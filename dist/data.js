@@ -1,3 +1,5 @@
+// Editorial cutoff: the last date the collection was reviewed. Windows and axes are computed from it.
+const CUTOFF = '2026-10-16';
 const DISCOVERIES = [
   {
     "id": "halicin",
@@ -10,7 +12,8 @@ const DISCOVERIES = [
     "limit": "Preclinical results do not establish safety or effectiveness in humans.",
     "status": "Preclinical experiments",
     "source": "MIT News · research announcement",
-    "url": "https://news.mit.edu/2020/artificial-intelligence-identifies-new-antibiotic-0220"
+    "url": "https://news.mit.edu/2020/artificial-intelligence-identifies-new-antibiotic-0220",
+    "buildsOn": []
   },
   {
     "id": "alphafold2",
@@ -23,20 +26,24 @@ const DISCOVERIES = [
     "limit": "Predicted structures are not experimental measurements and do not fully describe molecular dynamics or function.",
     "status": "Independent benchmark",
     "source": "Google DeepMind · CASP14 announcement",
-    "url": "https://deepmind.google/blog/alphafold-a-solution-to-a-50-year-old-grand-challenge-in-biology/"
+    "url": "https://deepmind.google/blog/alphafold-a-solution-to-a-50-year-old-grand-challenge-in-biology/",
+    "buildsOn": []
   },
   {
     "id": "alphafold-db",
     "title": "A public atlas of protein shapes",
     "date": "2021-07-22",
     "field": "Biology",
-    "summary": "DeepMind and EMBL-EBI launched a freely accessible database of predicted protein structures, including broad coverage of human proteins.",
+    "summary": "DeepMind and EMBL-EBI launched a freely accessible database of predicted protein structures, including broad coverage of human proteins. EMBL-EBI notes the predictions come from the AlphaFold system recognized at CASP14 in December 2020.",
     "aiRole": "AlphaFold generated structural predictions that EMBL-EBI made searchable and reusable.",
     "impact": "Turned an AI research advance into shared scientific infrastructure.",
     "limit": "Coverage and confidence vary; the database contains predictions, not confirmed structures for every protein.",
     "status": "Public research resource",
     "source": "EMBL-EBI · database launch",
-    "url": "https://www.ebi.ac.uk/about/news/announcements/alphafold-database-launch/"
+    "url": "https://www.ebi.ac.uk/about/news/announcements/alphafold-database-launch/",
+    "buildsOn": [
+      "alphafold2"
+    ]
   },
   {
     "id": "fusion-control",
@@ -49,7 +56,8 @@ const DISCOVERIES = [
     "limit": "This was a control experiment, not a demonstration of commercially useful fusion power.",
     "status": "Physical experiment",
     "source": "Google DeepMind and EPFL · research announcement",
-    "url": "https://deepmind.google/blog/accelerating-fusion-science-through-learned-plasma-control/"
+    "url": "https://deepmind.google/blog/accelerating-fusion-science-through-learned-plasma-control/",
+    "buildsOn": []
   },
   {
     "id": "alphatensor",
@@ -62,20 +70,24 @@ const DISCOVERIES = [
     "limit": "Improvements depend on matrix size, number system and hardware; this did not settle general matrix-multiplication complexity.",
     "status": "Peer-reviewed computational result",
     "source": "Google DeepMind · Nature research announcement",
-    "url": "https://deepmind.google/blog/discovering-novel-algorithms-with-alphatensor/"
+    "url": "https://deepmind.google/blog/discovering-novel-algorithms-with-alphatensor/",
+    "buildsOn": []
   },
   {
     "id": "abaucin",
     "title": "A targeted antibiotic candidate",
     "date": "2023-05-25",
     "field": "Biology",
-    "summary": "MIT and McMaster researchers identified abaucin, a compound active against Acinetobacter baumannii, and tested it in a mouse wound model.",
+    "summary": "MIT and McMaster researchers identified abaucin, a compound active against Acinetobacter baumannii, and tested it in a mouse wound model. MIT frames it as a follow-up to the lab’s earlier model-guided screen that found halicin.",
     "aiRole": "Machine learning prioritized compounds for antibacterial testing.",
     "impact": "Demonstrated a route toward narrow-spectrum antibiotic discovery.",
     "limit": "The reported evidence was preclinical; it did not establish a treatment for patients.",
     "status": "Preclinical experiments",
     "source": "MIT News · research announcement",
-    "url": "https://news.mit.edu/2023/using-ai-scientists-combat-drug-resistant-infections-0525"
+    "url": "https://news.mit.edu/2023/using-ai-scientists-combat-drug-resistant-infections-0525",
+    "buildsOn": [
+      "halicin"
+    ]
   },
   {
     "id": "alphadev",
@@ -88,7 +100,8 @@ const DISCOVERIES = [
     "limit": "Reported speedups concern specific sorting routines and benchmarks, not all software.",
     "status": "Peer-reviewed; deployed code",
     "source": "Google DeepMind · Nature research announcement",
-    "url": "https://deepmind.google/blog/alphadev-discovers-faster-sorting-algorithms/"
+    "url": "https://deepmind.google/blog/alphadev-discovers-faster-sorting-algorithms/",
+    "buildsOn": []
   },
   {
     "id": "rfdiffusion",
@@ -101,7 +114,8 @@ const DISCOVERIES = [
     "limit": "Generated designs still require experimental testing; successful binding is not equivalent to a safe medicine.",
     "status": "Peer-reviewed; experimental validation",
     "source": "Nature · RFdiffusion paper publication",
-    "url": "https://www.nature.com/articles/s41586-023-06415-8"
+    "url": "https://www.nature.com/articles/s41586-023-06415-8",
+    "buildsOn": []
   },
   {
     "id": "graphcast",
@@ -114,7 +128,8 @@ const DISCOVERIES = [
     "limit": "Benchmark performance is specific to evaluated variables and periods; fast inference excludes training and data preparation.",
     "status": "Peer-reviewed benchmark",
     "source": "Google DeepMind · Science research announcement",
-    "url": "https://deepmind.google/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/"
+    "url": "https://deepmind.google/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/",
+    "buildsOn": []
   },
   {
     "id": "gnome",
@@ -127,7 +142,8 @@ const DISCOVERIES = [
     "limit": "Predicted stability does not establish synthesizability, novelty in every case, or practical usefulness.",
     "status": "Peer-reviewed computational predictions",
     "source": "Google DeepMind · Nature research announcement",
-    "url": "https://deepmind.google/blog/millions-of-new-materials-discovered-with-deep-learning/"
+    "url": "https://deepmind.google/blog/millions-of-new-materials-discovered-with-deep-learning/",
+    "buildsOn": []
   },
   {
     "id": "funsearch",
@@ -140,7 +156,8 @@ const DISCOVERIES = [
     "limit": "The method needs a programmable evaluator and suitable problem structure; it is not a general autonomous mathematician.",
     "status": "Peer-reviewed computational result",
     "source": "Google DeepMind · Nature research announcement",
-    "url": "https://deepmind.google/blog/funsearch-making-new-discoveries-in-mathematical-sciences-using-large-language-models/"
+    "url": "https://deepmind.google/blog/funsearch-making-new-discoveries-in-mathematical-sciences-using-large-language-models/",
+    "buildsOn": []
   },
   {
     "id": "alphageometry",
@@ -153,20 +170,24 @@ const DISCOVERIES = [
     "limit": "This is a reasoning benchmark, not evidence that the system can solve arbitrary research problems.",
     "status": "Peer-reviewed benchmark",
     "source": "Google DeepMind · Nature research announcement",
-    "url": "https://deepmind.google/blog/alphageometry-an-olympiad-level-ai-system-for-geometry/"
+    "url": "https://deepmind.google/blog/alphageometry-an-olympiad-level-ai-system-for-geometry/",
+    "buildsOn": []
   },
   {
     "id": "alphafold3",
     "title": "Predicting molecular partnerships",
     "date": "2024-05-08",
     "field": "Biology",
-    "summary": "AlphaFold 3 extended structure prediction to complexes involving proteins, nucleic acids, small molecules and other molecular components.",
+    "summary": "AlphaFold 3 extended structure prediction to complexes involving proteins, nucleic acids, small molecules and other molecular components. The Nature paper describes it as a substantial evolution of the AlphaFold 2 architecture and training procedure.",
     "aiRole": "A diffusion-based model predicted joint molecular structures.",
     "impact": "Broadened the molecular interactions scientists can investigate computationally.",
     "limit": "Structural predictions do not establish binding strength, biological effect, clinical effectiveness or complete molecular dynamics.",
     "status": "Peer-reviewed benchmark",
     "source": "Nature · AlphaFold 3 paper",
-    "url": "https://www.nature.com/articles/s41586-024-07487-w"
+    "url": "https://www.nature.com/articles/s41586-024-07487-w",
+    "buildsOn": [
+      "alphafold2"
+    ]
   },
   {
     "id": "esm3",
@@ -179,33 +200,401 @@ const DISCOVERIES = [
     "limit": "The '500 million years' comparison is an evolutionary-distance estimate, not literal elapsed evolution or a measured research speedup.",
     "status": "Preprint and experiments at announcement",
     "source": "EvolutionaryScale · ESM3 release",
-    "url": "https://www.evolutionaryscale.ai/blog/esm3-release"
+    "url": "https://www.evolutionaryscale.ai/blog/esm3-release",
+    "buildsOn": []
   },
   {
     "id": "gencast",
     "title": "Forecasting possible weather futures",
     "date": "2024-12-04",
     "field": "Earth & climate",
-    "summary": "GenCast generated ensembles of weather forecasts and improved on a leading ensemble system across most evaluated targets.",
+    "summary": "GenCast generated ensembles of weather forecasts and improved on a leading ensemble system across most evaluated targets. DeepMind says it builds on its previous weather model, GraphCast.",
     "aiRole": "A diffusion model generated multiple plausible weather trajectories to estimate uncertainty.",
     "impact": "Helped extend AI forecasting from single predictions to probabilistic risk estimates.",
     "limit": "The published comparison used specified historical test conditions; it does not guarantee every local forecast or extreme event.",
     "status": "Peer-reviewed benchmark",
     "source": "Google DeepMind · Nature research announcement",
-    "url": "https://deepmind.google/blog/gencast-predicts-weather-and-the-risks-of-extreme-conditions-with-sota-accuracy/"
+    "url": "https://deepmind.google/blog/gencast-predicts-weather-and-the-risks-of-extreme-conditions-with-sota-accuracy/",
+    "buildsOn": [
+      "graphcast"
+    ]
+  },
+  {
+    "id": "mattergen",
+    "title": "Generating materials to a specification",
+    "date": "2025-01-16",
+    "field": "Materials",
+    "summary": "MatterGen, described in Nature, generated candidate inorganic materials conditioned on target properties; one generated structure, TaCr2O6, was synthesized and its measured bulk modulus was within about 20% of the target.",
+    "aiRole": "A diffusion model trained on about 608,000 stable materials generated 3D crystal structures directly, with fine-tuning for chemistry, symmetry and property constraints.",
+    "impact": "Shifted part of materials search from screening known candidates to generating new ones; code and data were released under an open license.",
+    "limit": "Experimental validation covered a single synthesized material, which showed Ta/Cr compositional disorder and a measured bulk modulus of 169 GPa against a 200 GPa target.",
+    "status": "Peer-reviewed; one material synthesized",
+    "source": "Microsoft Research · Nature research announcement",
+    "url": "https://www.microsoft.com/en-us/research/blog/mattergen-a-new-paradigm-of-materials-design-with-generative-ai/",
+    "buildsOn": []
+  },
+  {
+    "id": "ai-co-scientist",
+    "title": "A multi-agent research collaborator",
+    "date": "2025-02-19",
+    "field": "Biology",
+    "summary": "Google described AI co-scientist, a multi-agent system that proposes hypotheses and protocols, with laboratory follow-up on drug repurposing for acute myeloid leukemia and targets for liver fibrosis.",
+    "aiRole": "Gemini 2.0-based agents generated, critiqued, ranked and refined hypotheses toward a researcher-specified goal.",
+    "impact": "Showed a language-model system producing testable biomedical hypotheses that collaborators then checked in cell lines and organoids.",
+    "limit": "Validation was in cell lines and organoids, not patients. One antimicrobial-resistance result re-derived a finding the collaborators had already made in earlier unpublished work, and the Elo ranking used is not based on independent ground truth.",
+    "status": "Preprints and laboratory follow-up",
+    "source": "Google Research · research announcement",
+    "url": "https://research.google/blog/accelerating-scientific-breakthroughs-with-an-ai-co-scientist/",
+    "buildsOn": []
+  },
+  {
+    "id": "evo2",
+    "title": "A genome model across all domains of life",
+    "date": "2025-02-19",
+    "field": "Biology",
+    "summary": "Arc Institute and collaborators released Evo 2, trained on more than 9.3 trillion nucleotides from over 128,000 genomes, with open weights, code and training data.",
+    "aiRole": "A large DNA language model learned sequence patterns and can take up to one million nucleotides at once to score variants and generate sequences.",
+    "impact": "Gave researchers an openly available model for variant interpretation; in the developers' BRCA1 tests it exceeded 90% accuracy separating benign from potentially pathogenic mutations.",
+    "limit": "Reported accuracies are the developers' own evaluations at announcement, and variant scores are computational predictions rather than clinical determinations.",
+    "status": "Preprint and open model release at announcement",
+    "source": "Arc Institute · Evo 2 announcement",
+    "url": "https://arcinstitute.org/news/evo2",
+    "buildsOn": []
   },
   {
     "id": "alphaevolve",
     "title": "Algorithms that evolve through testing",
     "date": "2025-05-14",
     "field": "Mathematics",
-    "summary": "Google announced AlphaEvolve, reporting improved algorithms for mathematical problems and production computing tasks.",
+    "summary": "Google announced AlphaEvolve, reporting improved algorithms for mathematical problems and production computing tasks. DeepMind presents it as going beyond the single-function discovery of its 2023 FunSearch work.",
     "aiRole": "Gemini models proposed code, automated evaluators scored it, and evolutionary search retained promising solutions.",
     "impact": "Extended the generate-and-check approach to larger algorithmic programs and practical optimization.",
     "limit": "Results depend on task-specific evaluators; announcement claims should not be generalized to autonomous scientific discovery across all fields.",
     "status": "Research announcement and technical report",
     "source": "Google DeepMind · AlphaEvolve announcement",
-    "url": "https://deepmind.google/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/"
+    "url": "https://deepmind.google/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/",
+    "buildsOn": [
+      "funsearch"
+    ]
+  },
+  {
+    "id": "robin",
+    "title": "Agents propose an eye-disease drug candidate",
+    "date": "2025-05-20",
+    "field": "Biology",
+    "summary": "FutureHouse reported that Robin, a multi-agent workflow, identified ripasudil, a drug already used in the eye, as a candidate for dry age-related macular degeneration through iterative cell experiments.",
+    "aiRole": "Robin coordinated literature-review, candidate-evaluation and data-analysis agents to propose hypotheses and experiments; human researchers performed the laboratory work.",
+    "impact": "An example of AI agents chaining literature search, candidate selection and data analysis into one loop that produced a specific repurposing candidate.",
+    "limit": "Evidence is from cell culture and primary human retinal pigment epithelium cells only; the page reports no animal or human testing of ripasudil for this disease.",
+    "status": "Preclinical experiments; later published in Nature",
+    "source": "FutureHouse · research announcement",
+    "url": "https://www.futurehouse.org/research-announcements/demonstrating-end-to-end-scientific-discovery-with-robin-a-multi-agent-system",
+    "buildsOn": []
+  },
+  {
+    "id": "aurora-earth",
+    "title": "One model for several Earth forecasts",
+    "date": "2025-05-21",
+    "field": "Earth & climate",
+    "summary": "Microsoft's Aurora, described in Nature, was fine-tuned for medium-range weather, tropical cyclone tracks, air quality and ocean waves, and matched or beat operational systems on most evaluated targets in retrospective tests.",
+    "aiRole": "A large foundation model pretrained on diverse geophysical data was adapted to each task with comparatively small fine-tuning efforts.",
+    "impact": "Suggested a single pretrained model could be adapted to several Earth-system forecasting problems in weeks rather than years.",
+    "limit": "Results come from retrospective analyses; Aurora's outputs are deterministic, it depends on costly data assimilation, and air-quality and wave training data were limited.",
+    "status": "Peer-reviewed retrospective evaluation",
+    "source": "Microsoft Source · Nature research feature",
+    "url": "https://news.microsoft.com/source/features/ai/microsofts-aurora-ai-foundation-model-goes-beyond-weather-forecasting/",
+    "buildsOn": []
+  },
+  {
+    "id": "weatherlab-cyclones",
+    "title": "An experimental AI cyclone forecaster",
+    "date": "2025-06-12",
+    "field": "Earth & climate",
+    "summary": "Google DeepMind launched Weather Lab with an experimental cyclone model producing 50 scenarios up to 15 days ahead; in internal tests its five-day track error was on average 140 km lower than ECMWF's ensemble.",
+    "aiRole": "A model based on stochastic neural networks predicted cyclone formation, track, intensity, size and shape as an ensemble.",
+    "impact": "U.S. National Hurricane Center forecasters began viewing its live predictions alongside physics-based models during the 2025 season.",
+    "limit": "Results were internal evaluations; size and wind-radii results were preliminary, and the predictions were explicitly not official warnings.",
+    "status": "Experimental model; internal evaluation",
+    "source": "Google DeepMind · research announcement",
+    "url": "https://deepmind.google/blog/how-were-supporting-better-tropical-cyclone-prediction-with-ai/",
+    "buildsOn": []
+  },
+  {
+    "id": "alphagenome",
+    "title": "Reading regulatory DNA at megabase scale",
+    "date": "2025-06-25",
+    "field": "Biology",
+    "summary": "Google DeepMind introduced AlphaGenome, which takes DNA sequences of up to one million letters and predicts thousands of molecular properties related to gene regulation.",
+    "aiRole": "A deep learning model trained on public functional-genomics data predicts regulatory signals and scores how single-letter variants change them.",
+    "impact": "Reported matching or exceeding the best external models on 24 of 26 variant-effect evaluations, with one model covering many regulatory readouts at once.",
+    "limit": "Outputs are molecular predictions for research use only, not validated for clinical or personal-genome interpretation; the team notes continuing difficulty with distant regulatory elements and tissue-specific patterns.",
+    "status": "Preprint and preview API at announcement; later published in Nature",
+    "source": "Google DeepMind · research announcement",
+    "url": "https://deepmind.google/blog/alphagenome-ai-for-better-understanding-the-genome/",
+    "buildsOn": []
+  },
+  {
+    "id": "deep-think-imo",
+    "title": "Olympiad gold, graded by the Olympiad",
+    "date": "2025-07-21",
+    "field": "Mathematics",
+    "summary": "An advanced Gemini Deep Think model solved five of six 2025 International Mathematical Olympiad problems, scoring 35 of 42 points, with results graded and certified by IMO coordinators.",
+    "aiRole": "Gemini wrote natural-language proofs directly from the official problem statements within the 4.5-hour competition time limit, without translation into a formal language.",
+    "impact": "Moved olympiad-level proof writing from expert-formalized inputs to natural language, under independent grading.",
+    "limit": "A competition benchmark, not new mathematics. IMO certification covers the submitted answers, not DeepMind's system or process; the model used specialized training, curated solutions and IMO-specific hints.",
+    "status": "Independently graded competition result",
+    "source": "Google DeepMind · research announcement",
+    "url": "https://deepmind.google/blog/advanced-version-of-gemini-with-deep-think-officially-achieves-gold-medal-standard-at-the-international-mathematical-olympiad/",
+    "buildsOn": []
+  },
+  {
+    "id": "alphaearth",
+    "title": "A compact map of the planet's surface",
+    "date": "2025-07-30",
+    "field": "Earth & climate",
+    "summary": "AlphaEarth Foundations summarized satellite and other Earth observation data into embeddings for 10-by-10-meter squares, released as a yearly Satellite Embedding dataset in Google Earth Engine.",
+    "aiRole": "A model combined many observation sources into compact per-location summaries that downstream mapping tasks can reuse.",
+    "impact": "Gives researchers a ready-made basis for land-cover and change mapping, reporting 24% lower error on average than models tested, especially when labels are scarce.",
+    "limit": "Accuracy figures are the developers' comparisons on selected tasks; embeddings still require labeled data and validation for each specific mapping use.",
+    "status": "Research model and public dataset",
+    "source": "Google DeepMind · research announcement",
+    "url": "https://deepmind.google/blog/alphaearth-foundations-helps-map-our-planet-in-unprecedented-detail/",
+    "buildsOn": []
+  },
+  {
+    "id": "opencrispr-1",
+    "title": "An AI-designed gene editor, peer reviewed",
+    "date": "2025-07-30",
+    "field": "Biology",
+    "summary": "Profluent's Nature paper reported protein language models that generated CRISPR–Cas editors, including OpenCRISPR-1, which edits the human genome while differing from SpCas9 by roughly 400 mutations.",
+    "aiRole": "A protein language model fine-tuned on a mined atlas of more than one million CRISPR operons generated new editor sequences, which were then tested in the laboratory.",
+    "impact": "Reported generated editors matching or exceeding SpCas9 in activity or specificity, with OpenCRISPR-1 released for research and commercial use.",
+    "limit": "Editing was demonstrated in laboratory cell experiments; the paper does not establish safety or effectiveness as a human therapy.",
+    "status": "Peer-reviewed; experimental validation",
+    "source": "Nature · OpenCRISPR-1 paper",
+    "url": "https://www.nature.com/articles/s41586-025-09298-z",
+    "buildsOn": []
+  },
+  {
+    "id": "generative-antibiotics",
+    "title": "Antibiotic candidates designed, not screened",
+    "date": "2025-08-14",
+    "field": "Biology",
+    "summary": "MIT researchers used generative models to design compounds active against drug-resistant gonorrhea and MRSA; lead compounds NG1 and DN1 cleared infections in mouse models. MIT presents the work as building on the lab’s earlier models that found halicin and abaucin.",
+    "aiRole": "Generative models proposed more than 36 million candidate molecules, which machine-learning models previously trained in the same lab screened for predicted antibacterial activity and human-cell toxicity.",
+    "impact": "Moved the lab's AI antibiotic work from screening existing libraries to designing structurally unfamiliar molecules, one of which was linked to a new bacterial target.",
+    "limit": "Evidence is from lab dishes and mouse models only; most designs could not be synthesized, and the compounds require further chemical modification before any human testing.",
+    "status": "Peer-reviewed (Cell); preclinical experiments",
+    "source": "MIT News · Cell research announcement",
+    "url": "https://news.mit.edu/2025/using-generative-ai-researchers-design-compounds-kill-drug-resistant-bacteria-0814",
+    "buildsOn": [
+      "halicin",
+      "abaucin"
+    ]
+  },
+  {
+    "id": "deep-loop-shaping",
+    "title": "Quieting a gravitational-wave detector",
+    "date": "2025-09-04",
+    "field": "Physics",
+    "summary": "A Science paper reported a learned controller that reduced noise in LIGO's most unstable mirror-control feedback loop by 30 to 100 times, tested on the Livingston observatory hardware.",
+    "aiRole": "Deep Loop Shaping used reinforcement learning with frequency-domain rewards to train a feedback controller in simulation, then ran it on LIGO.",
+    "impact": "Shows AI control methods improving the instruments of fundamental physics, with a path toward observing more gravitational-wave events.",
+    "limit": "Demonstrated on one control loop; gains across LIGO's other loops and additional detected events are projections, and some larger reductions come from simulation.",
+    "status": "Peer-reviewed; tested on detector hardware",
+    "source": "Google DeepMind with LIGO and GSSI · Science research announcement",
+    "url": "https://deepmind.google/blog/using-ai-to-perceive-the-universe-in-greater-depth/",
+    "buildsOn": []
+  },
+  {
+    "id": "unstable-singularities",
+    "title": "New families of unstable fluid blow-ups",
+    "date": "2025-09-18",
+    "field": "Mathematics",
+    "summary": "DeepMind and academic mathematicians reported new families of unstable self-similar singularities for fluid equations, including incompressible porous media and 3D Euler with a boundary.",
+    "aiRole": "Physics-informed neural networks with a high-precision Gauss-Newton optimizer found candidate solutions to near double-float machine precision.",
+    "impact": "Offers a systematic numerical route to rare singularities that bear on long-standing questions about fluid equations.",
+    "limit": "Numerical discoveries and an empirical formula, not completed proofs: precision is described as meeting requirements for computer-assisted proofs. It does not resolve the Navier–Stokes Millennium Problem.",
+    "status": "Preprint · numerical discovery",
+    "source": "Google DeepMind with Brown, NYU and Stanford · research announcement and arXiv preprint",
+    "url": "https://deepmind.google/blog/discovering-new-solutions-to-century-old-problems-in-fluid-dynamics/",
+    "buildsOn": []
+  },
+  {
+    "id": "crest",
+    "title": "A robotic lab searches for a cheaper catalyst",
+    "date": "2025-09-25",
+    "field": "Materials",
+    "summary": "MIT's CRESt platform explored more than 900 chemistries and ran 3,500 electrochemical tests in about three months, finding an eight-element catalyst with about 9.3 times the power per dollar of pure palladium.",
+    "aiRole": "Models drawing on literature, experimental data and images proposed recipes, directed robotic synthesis and testing, and flagged experimental problems.",
+    "impact": "The catalyst set a record power density in a direct formate fuel cell using about a quarter of the precious metal of previous devices.",
+    "limit": "Reproducibility was a major problem and humans did most of the debugging; the result is a laboratory fuel-cell demonstration, not a commercial device.",
+    "status": "Peer-reviewed; laboratory experiments",
+    "source": "MIT News · Nature research announcement",
+    "url": "https://news.mit.edu/2025/ai-system-learns-many-types-scientific-information-and-runs-experiments-discovering-new-materials-0925",
+    "buildsOn": []
+  },
+  {
+    "id": "c2s-scale",
+    "title": "A cell model proposes a cancer hypothesis",
+    "date": "2025-10-15",
+    "field": "Biology",
+    "summary": "Google and Yale released C2S-Scale 27B, a single-cell model that predicted a drug combination which Yale researchers then tested in human cell models.",
+    "aiRole": "The model ran a virtual screen of over 4,000 drugs in two immune contexts and flagged silmitasertib as raising antigen presentation only where low-level interferon signalling is present.",
+    "impact": "The predicted context-dependent combination held up in cell models the model had not seen, giving a concrete case of a model-generated hypothesis surviving a laboratory test.",
+    "limit": "Validation was in vitro in neuroendocrine cell models and reported in a preprint; the authors call it an early first step requiring further preclinical and clinical work.",
+    "status": "Preprint with in vitro validation",
+    "source": "Google · Gemma and Yale research announcement",
+    "url": "https://blog.google/innovation-and-ai/products/google-gemma-ai-cancer-therapy-discovery/",
+    "buildsOn": []
+  },
+  {
+    "id": "torax-cfs",
+    "title": "Simulating a fusion machine before it runs",
+    "date": "2025-10-16",
+    "field": "Physics",
+    "summary": "Google DeepMind and Commonwealth Fusion Systems announced a research partnership using the open-source TORAX plasma simulator and reinforcement learning to plan operation of the SPARC tokamak. DeepMind says it builds on its earlier work using AI to control a plasma.",
+    "aiRole": "TORAX, a differentiable JAX simulator that can integrate AI models, supports large numbers of virtual experiments; reinforcement learning is being explored for control strategies.",
+    "impact": "Extends learned plasma control from an academic tokamak toward a machine designed to pursue net fusion energy.",
+    "limit": "A partnership announcement without experimental results: SPARC was not yet operating, TORAX still required validation, and net energy is a goal rather than a demonstration.",
+    "status": "Research partnership · no results yet",
+    "source": "Google DeepMind · partnership announcement",
+    "url": "https://deepmind.google/blog/bringing-ai-to-the-next-generation-of-fusion-energy/",
+    "buildsOn": [
+      "fusion-control"
+    ]
+  },
+  {
+    "id": "alphaevolve-math-scale",
+    "title": "Testing AlphaEvolve on 67 problems",
+    "date": "2025-11-03",
+    "field": "Mathematics",
+    "summary": "Georgiev, Gómez-Serrano, Tao and Wagner applied AlphaEvolve to 67 problems in analysis, combinatorics, geometry and number theory, rediscovering most best-known constructions and improving several.",
+    "aiRole": "AlphaEvolve's LLM-guided evolutionary search proposed and refined constructions; in some cases it was combined with Deep Think and AlphaProof for proof generation.",
+    "impact": "A mathematician-led, problem-by-problem record of where AI search helps and where it only matches prior work.",
+    "limit": "Improvements came in a minority of cases, mostly better constructions or bounds rather than new theory; the authors note some gains may be reachable by conventional methods. Not peer reviewed.",
+    "status": "Preprint · mixed results",
+    "source": "arXiv · research preprint",
+    "url": "https://arxiv.org/abs/2511.02864",
+    "buildsOn": [
+      "alphaevolve"
+    ]
+  },
+  {
+    "id": "rfantibody",
+    "title": "Antibodies designed from scratch",
+    "date": "2025-11-05",
+    "field": "Biology",
+    "summary": "The Institute for Protein Design reported antibodies designed computationally against bacterial toxins, viral proteins and cancer targets, and released the design software freely. The team trained a version of RFdiffusion to design the antibody binding regions.",
+    "aiRole": "The team trained a version of RFdiffusion to design antibody binding regions, then combined it with high-throughput screening and laboratory evolution.",
+    "impact": "Designed antibodies against Clostridium difficile toxin reached mid-nanomolar affinity and retained potency in full IgG format; the RFantibody code was released for academic and commercial use.",
+    "limit": "Designs worked in most but not all cases, only five were structurally characterised (four matching predictions), and the authors say the pipeline needs refinement; no clinical evidence is reported.",
+    "status": "Peer-reviewed (Nature); experimental validation",
+    "source": "UW Institute for Protein Design · Nature research announcement",
+    "url": "https://www.ipd.uw.edu/2025/11/rfantibody-in-nature",
+    "buildsOn": [
+      "rfdiffusion"
+    ]
+  },
+  {
+    "id": "alphaproof-nature",
+    "title": "AlphaProof's method, peer reviewed",
+    "date": "2025-11-12",
+    "field": "Mathematics",
+    "summary": "Nature published AlphaProof, the system behind DeepMind's 2024 IMO silver-medal-level result, which solved three of five non-geometry problems including the hardest.",
+    "aiRole": "An AlphaZero-inspired agent learned to find Lean proofs through reinforcement learning on millions of auto-formalized problems, adding test-time learning on generated problem variants.",
+    "impact": "Peer review of a formally verified approach: Lean proofs can be checked mechanically, unlike natural-language arguments.",
+    "limit": "Competition problems, not research mathematics; the IMO result needed multi-day computation, problems formalized in Lean, and AlphaGeometry 2 for geometry.",
+    "status": "Peer-reviewed; formally verified proofs",
+    "source": "Nature · research article",
+    "url": "https://www.nature.com/articles/s41586-025-09833-y",
+    "buildsOn": []
+  },
+  {
+    "id": "weathernext2",
+    "title": "Faster ensembles of weather scenarios",
+    "date": "2025-11-17",
+    "field": "Earth & climate",
+    "summary": "WeatherNext 2 generated hundreds of forecast scenarios in under a minute on a single TPU and, by Google's comparison, outperformed its previous WeatherNext model on 99.9% of variables and lead times.",
+    "aiRole": "A Functional Generative Network injects noise into the model architecture to produce physically consistent ensemble forecasts at up to hourly resolution.",
+    "impact": "Made probabilistic AI forecasts available as data in Earth Engine and BigQuery and through early access on Vertex AI.",
+    "limit": "Accuracy claims are Google's comparisons against its own earlier model rather than an independent benchmark; cyclone predictions remained experimental.",
+    "status": "Model release",
+    "source": "Google · Google DeepMind and Google Research",
+    "url": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/weathernext-2/",
+    "buildsOn": []
+  },
+  {
+    "id": "aletheia-erdos",
+    "title": "A research agent tries open problems",
+    "date": "2026-02-11",
+    "field": "Mathematics",
+    "summary": "Google DeepMind described Aletheia, a Deep Think-based research agent, reporting an AI-generated arithmetic-geometry paper, human–AI collaborations and a semi-autonomous review of 700 open Erdős problems.",
+    "aiRole": "Aletheia generates candidate solutions, checks them with a natural-language verifier, revises them and searches the literature; experts verified results.",
+    "impact": "Moves from competition problems to research questions, with a proposed taxonomy for describing how autonomous a contribution was.",
+    "limit": "DeepMind claims no major advances. Of 700 Erdős problems only a handful yielded seemingly novel solutions, others matched existing literature, and the authors attribute their open status to obscurity rather than difficulty.",
+    "status": "Preprints · expert-checked, semi-autonomous",
+    "source": "Google DeepMind · research announcement",
+    "url": "https://deepmind.google/blog/accelerating-mathematical-and-scientific-discovery-with-gemini-deep-think/",
+    "buildsOn": [
+      "deep-think-imo"
+    ]
+  },
+  {
+    "id": "gluon-amplitudes",
+    "title": "A gluon amplitude thought to vanish",
+    "date": "2026-02-13",
+    "field": "Physics",
+    "summary": "A preprint by physicists and OpenAI showed that single-minus gluon tree amplitudes, usually treated as zero, are nonzero in a special half-collinear momentum regime, and gave a formula for them.",
+    "aiRole": "GPT-5.2 Pro simplified hand-computed cases and conjectured the general formula; an internal model reproduced it and produced a proof, which the authors checked.",
+    "impact": "An example of a language model contributing a conjectured formula in theoretical physics, with standard analytical checks.",
+    "limit": "A preprint submitted for publication, not yet peer reviewed. The result applies to a specific, non-generic kinematic regime, and humans computed the base cases.",
+    "status": "Preprint · author-verified",
+    "source": "OpenAI · research announcement",
+    "url": "https://openai.com/index/new-result-theoretical-physics/",
+    "buildsOn": []
+  },
+  {
+    "id": "melissa-forecast",
+    "title": "An AI forecast of a record hurricane",
+    "date": "2026-05-19",
+    "field": "Earth & climate",
+    "summary": "Google reported that WeatherNext predicted Hurricane Melissa's Category 5 landfall in Jamaica five days ahead with 80% confidence, and that the NHC's 2025 verification report ranked it the top individual model for track and intensity.",
+    "aiRole": "An AI ensemble model supplied probabilistic track and intensity forecasts that NHC forecasters weighed with physics-based models and observations.",
+    "impact": "Gave an operational example of AI guidance supporting an unusually early rapid-intensification forecast.",
+    "limit": "One storm and one season; WeatherNext was one input among physics models, satellites and aircraft data, and official warnings came from forecasters, not the model.",
+    "status": "Operational use; agency verification",
+    "source": "Google DeepMind · WeatherNext team",
+    "url": "https://deepmind.google/blog/how-weathernext-helped-the-national-hurricane-center-better-predict-hurricane-melissas-historic-landfall-in-jamaica/",
+    "buildsOn": []
+  },
+  {
+    "id": "unit-distance-disproof",
+    "title": "Erdős's unit-distance conjecture disproved",
+    "date": "2026-05-20",
+    "field": "Mathematics",
+    "summary": "OpenAI reported that an internal model disproved the long-held belief that square-grid constructions are essentially optimal for unit-distance pairs, giving a polynomial improvement.",
+    "aiRole": "A general-purpose reasoning model, evaluated on a collection of Erdős problems, produced the proof using ideas from algebraic number theory.",
+    "impact": "A prominent open problem in combinatorial geometry resolved by an AI-generated argument and checked by external mathematicians.",
+    "limit": "Checked by external mathematicians who wrote a companion paper, but announced without journal review; the AI proof gives no explicit exponent, later supplied by a human refinement.",
+    "status": "Announced proof · externally checked",
+    "source": "OpenAI · research announcement",
+    "url": "https://openai.com/index/model-disproves-discrete-geometry-conjecture/",
+    "buildsOn": []
+  },
+  {
+    "id": "electrolytegpt",
+    "title": "Generating whole battery electrolyte recipes",
+    "date": "2026-06-03",
+    "field": "Materials",
+    "summary": "University of Chicago researchers reported a generative model that proposes complete electrolyte formulations; several synthesized suggestions performed on par with state-of-the-art lithium-metal battery electrolytes.",
+    "aiRole": "A generative model using a SMILES-based notation extended for ratios, salt concentrations and temperature proposed formulations against conductivity, stability, efficiency and viscosity targets.",
+    "impact": "Extends AI design from choosing single molecules to specifying full mixtures, a step closer to how electrolytes are actually used.",
+    "limit": "New formulations matched rather than surpassed the best existing electrolytes, and the researchers note limited training data and parameters.",
+    "status": "Peer-reviewed; laboratory battery tests",
+    "source": "University of Chicago News · JACS Au research announcement",
+    "url": "https://news.uchicago.edu/story/electrolytegpt-can-generate-new-formulations-battery-development",
+    "buildsOn": []
   },
   {
     "id": "openai-ten-advances",
@@ -218,7 +607,8 @@ const DISCOVERIES = [
     "limit": "This is one release containing ten reported results, not ten independently reviewed discoveries counted separately here.",
     "status": "Research release with formalizations",
     "source": "OpenAI · research announcement",
-    "url": "https://openai.com/index/ten-advances-in-mathematics/"
+    "url": "https://openai.com/index/ten-advances-in-mathematics/",
+    "buildsOn": []
   },
   {
     "id": "weathernext-cyclones",
@@ -231,33 +621,40 @@ const DISCOVERIES = [
     "limit": "The extra day is an average comparison in the reported evaluation, not a guarantee for each storm or location.",
     "status": "Peer-reviewed research announcement",
     "source": "Google DeepMind · Nature research announcement",
-    "url": "https://deepmind.google/blog/weathernext-ai-model-achieves-breakthrough-in-forecasting-cyclones/"
+    "url": "https://deepmind.google/blog/weathernext-ai-model-achieves-breakthrough-in-forecasting-cyclones/",
+    "buildsOn": []
   },
   {
     "id": "weathernext3",
     "title": "Weather forecasts learn from live observations",
     "date": "2026-09-03",
     "field": "Earth & climate",
-    "summary": "WeatherNext 3 introduced hourly forecasts incorporating live satellite observations, with selected surface variables predicted on a five-kilometer grid.",
+    "summary": "WeatherNext 3 introduced hourly forecasts incorporating live satellite observations, with selected surface variables predicted on a five-kilometer grid. Google describes WeatherNext 2 as the previous model it succeeds.",
     "aiRole": "A generative network combines observations and historical analysis to predict weather across several resolutions.",
     "impact": "Connects accumulated AI forecasting research to more frequent, locally detailed forecasts and renewable-energy planning.",
     "limit": "Five-kilometer resolution applies to selected variables; resolution and accuracy differ by variable, region and forecast horizon.",
     "status": "Model release and research report",
     "source": "Google · WeatherNext team",
-    "url": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/introducing-weathernext-3/"
+    "url": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/introducing-weathernext-3/",
+    "buildsOn": [
+      "weathernext2"
+    ]
   },
   {
     "id": "alphagenome-atlas",
     "title": "A map of nine billion possible DNA changes",
     "date": "2026-09-08",
     "field": "Biology",
-    "summary": "AlphaGenome Atlas made precomputed predictions for nine billion possible single-letter human DNA variants accessible to academic researchers.",
+    "summary": "AlphaGenome Atlas made precomputed predictions for nine billion possible single-letter human DNA variants accessible to academic researchers. The atlas precomputes AlphaGenome’s predictions at scale.",
     "aiRole": "AlphaGenome predicts molecular effects; a combined score incorporates AlphaMissense predictions for protein-altering variants.",
     "impact": "Existing models become a reusable atlas that helps researchers prioritize variants for experimental investigation.",
     "limit": "These are computational predictions, not nine billion validated discoveries. Reported experimental checks cover selected variants, not the entire atlas.",
     "status": "Predictive resource with selected experimental checks",
     "source": "Google DeepMind · AlphaGenome Atlas team",
-    "url": "https://deepmind.google/blog/alphagenome-atlas-a-predictive-map-of-every-possible-dna-letter-change-in-the-human-genome/"
+    "url": "https://deepmind.google/blog/alphagenome-atlas-a-predictive-map-of-every-possible-dna-letter-change-in-the-human-genome/",
+    "buildsOn": [
+      "alphagenome"
+    ]
   },
   {
     "id": "navier-stokes-2026",
@@ -270,7 +667,8 @@ const DISCOVERIES = [
     "limit": "Presented as a research claim: this entry does not establish independent community acceptance or a Millennium Prize award. The construction includes external forcing.",
     "status": "Announced proof and formalization",
     "source": "OpenAI · research announcement",
-    "url": "https://openai.com/index/navier-stokes-solution/"
+    "url": "https://openai.com/index/navier-stokes-solution/",
+    "buildsOn": []
   },
   {
     "id": "bootloops",
@@ -283,7 +681,8 @@ const DISCOVERIES = [
     "limit": "Manuscripts are not equivalent to independently validated breakthroughs; the author describes ongoing verification and essential expert guidance.",
     "status": "Open toolkit and author-reported research",
     "source": "Matthew Schwartz · Anthropic guest research post",
-    "url": "https://www.anthropic.com/research/claude-shaped-science"
+    "url": "https://www.anthropic.com/research/claude-shaped-science",
+    "buildsOn": []
   },
   {
     "id": "openai-math-collection",
@@ -296,19 +695,23 @@ const DISCOVERIES = [
     "limit": "The launch count of 722 fell to 719 after three withdrawals on October 7. Families group related papers; neither count means independently confirmed breakthroughs. Verification varies.",
     "status": "Research collection · revisions and withdrawals",
     "source": "OpenAI · live research repository and history",
-    "url": "https://github.com/openai/math"
+    "url": "https://github.com/openai/math",
+    "buildsOn": []
   },
   {
     "id": "antigravity-peptide",
     "title": "AI tools combine to find an antimicrobial lead",
     "date": "2026-10-15",
     "field": "Biology",
-    "summary": "Google demonstrated an agent-assisted workflow that identified an antimicrobial peptide candidate using protein annotations, structural predictions and genomic context.",
+    "summary": "Google demonstrated an agent-assisted workflow that identified an antimicrobial peptide candidate using protein annotations, structural predictions and genomic context. The workflow retrieves candidate 3D models from the AlphaFold Protein Structure Database.",
     "aiRole": "Antigravity orchestrated ProtNLM annotations, AlphaFold Database structures, database searches and literature analysis under researcher direction.",
     "impact": "Shows older AI-built resources becoming inputs to newer scientific workflows, reducing fragmented candidate investigation to a collaborative session.",
     "limit": "The candidate was undergoing wet-lab validation at announcement. Predicted antimicrobial activity is not demonstrated treatment effectiveness or safety.",
     "status": "Computational candidate · experiments pending",
     "source": "Google DeepMind · technical walkthrough",
-    "url": "https://deepmind.google/blog/accelerating-antimicrobial-discovery/"
+    "url": "https://deepmind.google/blog/accelerating-antimicrobial-discovery/",
+    "buildsOn": [
+      "alphafold-db"
+    ]
   }
 ];
