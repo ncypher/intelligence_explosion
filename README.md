@@ -8,17 +8,22 @@ No build or dependencies required. Serve `dist/` with any static server, for exa
 
 ## Features
 
+- Linear-calendar cumulative graph with clickable points and accessible values table
+- Last-30-days filter (relative to the editorial cutoff)
+- Source-linked examples of compounding tools and research
+- Eight 2026 additions, including BootLoops and OpenAI mathematics release; batch releases count once.
+
 - SVG discovery tree with keyboard-operable leaves and zoom
-- Search, five scientific field filters, and a 2020–2025 timeline with playback
+- Search, five scientific field filters, and a 2020–2026 timeline with playback
 - Reading view, five-stop guided tour, and random discovery
-- 16 curated entries with primary sources, evidence status, AI contribution and limitations
+- 24 curated entries with primary sources, evidence status, AI contribution and limitations
 - Responsive layout and reduced-motion support
 
 Dates reflect the linked publication or announcement. Branches classify topics; they do not assert causal relationships. Collection growth is not a scientific acceleration metric. This is a starter collection, not comprehensive current news coverage.
 
 ## Add discoveries
 
-Edit `dist/data.js`. Each entry needs a unique `id`, `title`, ISO `date`, `field`, `summary`, `aiRole`, `impact`, `limit`, `status`, `source`, and HTTPS `url`. Fields: Biology, Mathematics, Materials, Earth & climate, Physics. Extend the timeline range in index.html and app.js when adding years after 2025.
+Edit `dist/data.js`. Each entry needs a unique `id`, `title`, ISO `date`, `field`, `summary`, `aiRole`, `impact`, `limit`, `status`, `source`, and HTTPS `url`. Fields: Biology, Mathematics, Materials, Earth & climate, Physics. Extend the timeline range and graph date bounds when adding later dates. The current editorial cutoff is October 16, 2026.
 
 ## Hosting
 
