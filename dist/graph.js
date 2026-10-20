@@ -104,8 +104,12 @@ function drawLineage(id) {
   const arc = (a, b, cls) => {
     const p = graphPoints.get(a), q = graphPoints.get(b);
     if (!p || !q) return;
-    const dx = q.x - p.x, dy = q.y - p.y, lift = Math.min(140, 30 + Math.hypot(dx, dy) * .3);
-    s += `<path class="arc ${cls}" d="M${p.x} ${p.y} Q${(p.x + q.x) / 2} ${Math.min(p.y, q.y) - lift} ${q.x} ${q.y}"/>`;
+    const dx = q.x - p.x, dy = q.y - p.y;
+    const lift = Math.min((GY0 - GY1) * .18, 30 + Math.hypot(dx, dy) * .3);
+    // Keep the entire Bezier hull inside the plot, clear of the window label.
+    const controlY = Math.max(GY1 + 3, Math.min(p.y, q.y) - lift);
+    const long = Math.abs(dx) > (GX1 - GX0) * .4;
+    s += `<path class="arc ${cls}${long ? ' long' : ''}" d="M${p.x} ${p.y} Q${(p.x + q.x) / 2} ${controlY} ${q.x} ${q.y}"/>`;
   };
   for (const n of [id, ...up]) for (const parent of byId.get(n)?.buildsOn || []) if (n === id || up.has(n)) arc(parent, n, n === id ? 'direct' : 'deep');
   for (const n of down) for (const parent of byId.get(n).buildsOn) if (parent === id || down.has(parent)) arc(parent, n, 'down');

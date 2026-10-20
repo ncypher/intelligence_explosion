@@ -44,13 +44,49 @@
     <label class="search"><span>⌕</span><input id="search" type="search" placeholder="Find a discovery…" aria-label="Search discoveries"></label>
   </div>
   <div class="filters" id="filters"></div>
-  <div class="rangebar"><button id="recent" aria-pressed="false">Last 30 days</button><span id="coverage">Through October 16, 2026 · publication dates</span></div>
+  <div class="rangebar"><button id="recent" aria-pressed="false">Last 30 days</button><span id="coverage"></span></div>
   <div class="explorer">
     <div class="visual">
       <div class="canvas-note"><span id="shown"></span><small id="hint">SELECT A POINT TO TRACE WHAT IT BUILDS ON</small></div>
       <div id="graph-wrap">
         <svg id="graph" viewBox="0 0 1000 560" role="group" aria-label="Cumulative curated milestones over calendar time"></svg>
         <p class="graph-caption">Linear axes · one point per entry · gold arcs show documented “builds on” links. <a href="#howto">How to read this ↓</a></p>
+        <section class="measured" aria-labelledby="measured-title">
+          <h2 id="measured-title">Measured elsewhere</h2>
+          <p class="measured-framing">This collection is curated. These trends are measured. Read them together.</p>
+          <div class="measured-cards">
+            <article>
+              <span class="measured-label">METR · SOFTWARE TASKS</span>
+              <h3>How long a task can an agent complete?</h3>
+              <p class="measured-number">~7 months → ~3 months <small>long-run → since 2024 · 50% task-horizon doubling</small></p>
+              <p>METR’s TH1.1 analysis reports 89-day doubling since 2024, compared with 196 days over 2019–2025 using a hybrid of TH1 and TH1.1 estimates. Task length is measured in human expert time.</p>
+              <p>The May 19 report puts the public-frontier 50% horizon at ~12h (CI 5h–61h) for February–March 2026.</p>
+              <p class="measured-limit">Task difficulty, not runtime; the suite cannot reliably measure above ~16h. Trends depend on task composition.</p>
+              <a href="https://metr.org/blog/2026-01-29-time-horizon-1-1/" target="_blank" rel="noopener noreferrer">Read Time Horizon 1.1 ↗</a>
+              <small class="measured-date">Analysis: Jan 29, 2026 · checked Oct 19, 2026</small>
+              <p><a href="https://metr.org/blog/2026-05-19-frontier-risk-report/" target="_blank" rel="noopener noreferrer">Read the frontier risk report ↗</a></p>
+              <small class="measured-date">Analysis: May 19, 2026 · checked Oct 19, 2026</small>
+            </article>
+            <article>
+              <span class="measured-label">EPOCH AI · TRAINING COMPUTE</span>
+              <h3>How much computation goes into training?</h3>
+              <p class="measured-number">~5× per year <small>doubling ~5.2 months · 90% CI 4–6× per year</small></p>
+              <p>Epoch AI reports this growth in training compute for frontier language models since 2020.</p>
+              <p class="measured-limit">Compute is an input to AI development, not a count of discoveries or a direct measure of scientific progress.</p>
+              <a href="https://epoch.ai/trends" target="_blank" rel="noopener noreferrer">Read Epoch AI’s trends ↗</a>
+              <small class="measured-date">Analysis: Feb 5, 2026 · checked Oct 19, 2026</small>
+            </article>
+            <article class="capability-signal">
+              <span class="measured-label">Capability signal</span>
+              <h3>Four Gemini 4 Argon agents beat Minecraft</h3>
+              <p class="measured-number">27h 14m <small>to defeat the Ender Dragon</small></p>
+              <p>4 agents controlled players through Mineflayer on Easy difficulty with a random seed. They wrote 2,783 programs themselves and died 605 times, with no human-written game logic.</p>
+              <p class="measured-limit">Long-horizon autonomy — not a scientific discovery, but the kind of capability discovery agents run on.</p>
+              <a href="https://arxiv.org/abs/2610.22319" target="_blank" rel="noopener noreferrer">Read the abstract ↗</a>
+              <small class="measured-date">Paper: Oct 15, 2026 · checked Oct 19, 2026</small>
+            </article>
+          </div>
+        </section>
         <details><summary>See the plotted values</summary><div id="graph-table"></div></details>
       </div>
       <div id="tree-wrap" hidden>
@@ -93,7 +129,7 @@
 </section>
 </main>
 <footer><span>INTELLIGENCE EXPLOSION <i>·</i> An unfinished story.</span><a href="https://github.com/ncypher/intelligence_explosion" target="_blank" rel="noopener">Explore the project ↗</a></footer>
-<dialog id="info"><button id="close" aria-label="Close about dialog">×</button><p class="eyebrow">ABOUT THIS COLLECTION</p><h2>Wonder, with receipts.</h2><p>Intelligence Explosion follows selected milestones in AI-assisted science. Dates mark the linked publication or announcement, not necessarily the first experiment.</p><p>Tree branches are subject categories, not claims of causation. “Builds on” links appear only where a source documents the dependency. Points and leaves have equal weight. Their size does not score importance. Every entry comes with its source description and limits.</p><p>The collection covers <span id="about-span">2020–2026</span> and is not comprehensive. New findings require editorial review before publication. Last editorial review: October 16, 2026.</p><p>Built for Tom Harwood’s Intelligence Explosion project.</p></dialog>
+<dialog id="info"><button id="close" aria-label="Close about dialog">×</button><p class="eyebrow">ABOUT THIS COLLECTION</p><h2>Wonder, with receipts.</h2><p>Intelligence Explosion follows selected milestones in AI-assisted science. Dates mark the linked publication or announcement, not necessarily the first experiment.</p><p>Tree branches are subject categories, not claims of causation. “Builds on” links appear only where a source documents the dependency. Points and leaves have equal weight. Their size does not score importance. Every entry comes with its source description and limits.</p><p>The collection covers <span id="about-span">2020–2026</span> and is not comprehensive. New findings require editorial review before publication. Last editorial review: <span id="review-date"></span>.</p><p>Built for Tom Harwood’s Intelligence Explosion project.</p></dialog>
 <script src="data.js"></script><script src="graph.js"></script><script src="app.js"></script>
 </body>
 </html>
