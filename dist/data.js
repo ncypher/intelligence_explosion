@@ -1,5 +1,5 @@
 // Editorial cutoff: the last date the collection was reviewed. Windows and axes are computed from it.
-const CUTOFF = '2026-10-16';
+const CUTOFF = '2026-10-19';
 const DISCOVERIES = [
   {
     "id": "halicin",
@@ -713,5 +713,47 @@ const DISCOVERIES = [
     "buildsOn": [
       "alphafold-db"
     ]
+  },
+  {
+    "id": "art-enzyme",
+    "title": "An AI-flagged, CRISPR-like enzyme system",
+    "date": "2026-09-23",
+    "field": "Biology",
+    "summary": "Anthropic reported array-associated reverse transcriptases (ART): phage reverse-transcriptase genes accompanied by a repeat array and an accessory protein, reminiscent of CRISPR-like organization.",
+    "aiRole": "Under high-level researcher direction, Claude searched a large DNA sequence database for reverse-transcriptase genes for about 21 hours and flagged an uncatalogued repeat pattern plus an associated protein in the Array-associated Reverse Transcriptase system.",
+    "impact": "Offers a candidate molecular system for laboratory investigation and an example of agent-assisted genome mining.",
+    "limit": "Function not determined; not peer reviewed. A University of Copenhagen team led by Mario Rodríguez Mestre says it identified the system about a year earlier in unpublished work; Anthropic denies using that work.",
+    "status": "Computational finding · not peer reviewed",
+    "source": "Anthropic · research announcement",
+    "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
+    "buildsOn": []
+  },
+  {
+    "id": "iris-signaling",
+    "title": "Reading which cell signals are switched on",
+    "date": "2026-09-08",
+    "field": "Biology",
+    "summary": "IRIS reconstructed signaling states and histories from single-cell gene expression. A predicted signaling condition favoring a lung-related cell type was supported in mouse embryo experiments.",
+    "aiRole": "A neural network learned response signatures from signaling perturbation screens and transferred them to single-cell atlases to infer pathway activity and propose differentiation conditions.",
+    "impact": "Could help researchers choose signaling combinations for stem-cell engineering and investigate developmental communication.",
+    "limit": "Trained on human embryonic stem cells. One prediction — a signaling condition favoring a lung-related cell type — was supported in mouse embryos; the others remain predictions.",
+    "status": "Peer reviewed · targeted experimental support",
+    "source": "Nature Methods · published September 8, 2026",
+    "url": "https://www.nature.com/articles/s41592-026-03213-8",
+    "buildsOn": []
+  },
+  {
+    "id": "epipred-stxbp1",
+    "title": "Sorting uncertain epilepsy variants",
+    "date": "2026-10-15",
+    "field": "Biology",
+    "summary": "Northwestern’s October 15 research announcement describes EpiPred, a gene-specific classifier for STXBP1 missense variants. The linked JCI paper was published September 17, 2026.",
+    "aiRole": "Machine learning trained on curated pathogenic and benign variants predicted which uncertain STXBP1 variants may be harmful; researchers compared predictions with cellular assays.",
+    "impact": "Could prioritize variants for follow-up and improve interpretation of a gene associated with developmental and epileptic disorders.",
+    "limit": "Predictions, not diagnoses. About a quarter of uncertain variants were predicted harmful; lab validation covered about two dozen variants across four assays. Clinical interpretation requires further validation.",
+    "status": "Peer reviewed · limited laboratory validation",
+    "source": "Journal of Clinical Investigation · October 15 research announcement",
+    "url": "https://doi.org/10.1172/jci207160",
+    "buildsOn": []
   }
 ];
