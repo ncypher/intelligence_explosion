@@ -23,6 +23,7 @@ const descendants = id => closure(id, n => ledTo.get(n) || []);
   $('stat-recent').textContent = inWin(90, 0);
   $('stat-before').textContent = inWin(180, 90);
   $('total').textContent = data.length;
+  $('review-date').textContent = fmtDate(CUTOFF);
   $('span').textContent = $('about-span').textContent = `${firstYear}–${lastYear}`;
 })();
 

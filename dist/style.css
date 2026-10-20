@@ -12,6 +12,7 @@
 .plot-point.pop{animation:pop .4s ease-out both}@keyframes pop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}.plot-point{transform-box:fill-box;transform-origin:center}
 .graph-caption a{color:var(--gold)}
 /* Tree label overlay */
+#graph .arc.long{stroke-width:.8;opacity:.35}
 #tree-tip{pointer-events:none}#tree-tip rect{fill:#091518e6;stroke:#3b5155}#tree-tip text{font:12px 'DM Sans',sans-serif;fill:var(--text)}
 /* Lineage chips */
 .chips{display:flex;flex-wrap:wrap;gap:6px}.chip{font-size:11px;padding:6px 9px;border-color:#33494d;text-align:left;line-height:1.35}.chip small{color:var(--muted);margin-left:6px}.chip:hover{border-color:var(--gold)}aside .quiet{color:var(--muted);font-style:italic}

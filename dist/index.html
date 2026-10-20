@@ -44,7 +44,7 @@
     <label class="search"><span>⌕</span><input id="search" type="search" placeholder="Find a discovery…" aria-label="Search discoveries"></label>
   </div>
   <div class="filters" id="filters"></div>
-  <div class="rangebar"><button id="recent" aria-pressed="false">Last 30 days</button><span id="coverage">Through October 16, 2026 · publication dates</span></div>
+  <div class="rangebar"><button id="recent" aria-pressed="false">Last 30 days</button><span id="coverage"></span></div>
   <div class="explorer">
     <div class="visual">
       <div class="canvas-note"><span id="shown"></span><small id="hint">SELECT A POINT TO TRACE WHAT IT BUILDS ON</small></div>
@@ -93,7 +93,7 @@
 </section>
 </main>
 <footer><span>INTELLIGENCE EXPLOSION <i>·</i> An unfinished story.</span><a href="https://github.com/ncypher/intelligence_explosion" target="_blank" rel="noopener">Explore the project ↗</a></footer>
-<dialog id="info"><button id="close" aria-label="Close about dialog">×</button><p class="eyebrow">ABOUT THIS COLLECTION</p><h2>Wonder, with receipts.</h2><p>Intelligence Explosion follows selected milestones in AI-assisted science. Dates mark the linked publication or announcement, not necessarily the first experiment.</p><p>Tree branches are subject categories, not claims of causation. “Builds on” links appear only where a source documents the dependency. Points and leaves have equal weight. Their size does not score importance. Every entry comes with its source description and limits.</p><p>The collection covers <span id="about-span">2020–2026</span> and is not comprehensive. New findings require editorial review before publication. Last editorial review: October 16, 2026.</p><p>Built for Tom Harwood’s Intelligence Explosion project.</p></dialog>
+<dialog id="info"><button id="close" aria-label="Close about dialog">×</button><p class="eyebrow">ABOUT THIS COLLECTION</p><h2>Wonder, with receipts.</h2><p>Intelligence Explosion follows selected milestones in AI-assisted science. Dates mark the linked publication or announcement, not necessarily the first experiment.</p><p>Tree branches are subject categories, not claims of causation. “Builds on” links appear only where a source documents the dependency. Points and leaves have equal weight. Their size does not score importance. Every entry comes with its source description and limits.</p><p>The collection covers <span id="about-span">2020–2026</span> and is not comprehensive. New findings require editorial review before publication. Last editorial review: <span id="review-date"></span>.</p><p>Built for Tom Harwood’s Intelligence Explosion project.</p></dialog>
 <script src="data.js"></script><script src="graph.js"></script><script src="app.js"></script>
 </body>
 </html>

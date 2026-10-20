@@ -25,6 +25,8 @@ A collapsible “How to read this” note under the explorer explains what the c
 
 ## Add discoveries
 
+To add a milestone: append to DISCOVERIES, bump CUTOFF.
+
 Edit `dist/data.js`. Each entry needs a unique `id`, `title`, ISO `date`, `field`, `summary`, `aiRole`, `impact`, `limit`, `status`, `source`, HTTPS `url`, and `buildsOn` (an array of earlier entry ids, empty unless the source documents the dependency; cite it in the summary). Fields: Biology, Mathematics, Materials, Earth & climate, Physics. Update `CUTOFF` at the top of `data.js` at each editorial review; graph bounds, the Last 30 days filter and the hero windows derive from it. The current editorial cutoff is October 16, 2026.
 
 Regenerate the share image after data changes: `npm i playwright && node tools/make-og.js` (writes `dist/og.png`, 1200×630).
