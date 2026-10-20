@@ -51,6 +51,39 @@
       <div id="graph-wrap">
         <svg id="graph" viewBox="0 0 1000 560" role="group" aria-label="Cumulative curated milestones over calendar time"></svg>
         <p class="graph-caption">Linear axes · one point per entry · gold arcs show documented “builds on” links. <a href="#howto">How to read this ↓</a></p>
+        <section class="measured" aria-labelledby="measured-title">
+          <h2 id="measured-title">Measured elsewhere</h2>
+          <p class="measured-framing">This collection is curated. These trends are measured. Read them together.</p>
+          <div class="measured-cards">
+            <article>
+              <span class="measured-label">METR · SOFTWARE TASKS</span>
+              <h3>How long a task can an agent complete?</h3>
+              <p class="measured-number">~7 months <small>to double the 50% task horizon</small></p>
+              <p>METR’s March 2025 analysis found roughly six years of doubling in the length of software tasks agents complete at 50% reliability, measured in human expert time. Claude 3.7 Sonnet’s horizon was about one hour.</p>
+              <p class="measured-limit">Task difficulty, not time spent running. The task suite is narrower and cleaner than most real work; the chart is no longer actively updated.</p>
+              <a href="https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/" target="_blank" rel="noopener noreferrer">Read METR’s analysis ↗</a>
+              <small class="measured-date">As of October 19, 2026 · March 2025 analysis</small>
+            </article>
+            <article>
+              <span class="measured-label">EPOCH AI · TRAINING COMPUTE</span>
+              <h3>How much computation goes into training?</h3>
+              <p class="measured-number">4.4× <small>growth per year</small></p>
+              <p>Epoch AI’s June 2024 analysis reports this annual growth in training compute for notable AI models since 2010 — roughly a doubling every six months.</p>
+              <p class="measured-limit">Compute is an input to AI development, not a count of discoveries or a direct measure of scientific progress.</p>
+              <a href="https://epoch.ai/data-insights/compute-trend-post-2010" target="_blank" rel="noopener noreferrer">Read Epoch AI’s analysis ↗</a>
+              <small class="measured-date">As of October 19, 2026 · June 2024 analysis</small>
+            </article>
+            <article class="capability-signal">
+              <span class="measured-label">Capability signal</span>
+              <h3>Four Gemini 4 Argon agents beat Minecraft</h3>
+              <p class="measured-number">27h 14m <small>to defeat the Ender Dragon</small></p>
+              <p>4 agents controlled players through Mineflayer on Easy difficulty with a random seed. They wrote 2,783 programs themselves and died 605 times, with no human-written game logic.</p>
+              <p class="measured-limit">Long-horizon autonomy — not a scientific discovery, but the kind of capability discovery agents run on.</p>
+              <a href="https://arxiv.org/abs/2610.22319" target="_blank" rel="noopener noreferrer">Read the abstract ↗</a>
+              <small class="measured-date">Faldor, Singh &amp; Raileanu · submitted October 15, 2026</small>
+            </article>
+          </div>
+        </section>
         <details><summary>See the plotted values</summary><div id="graph-table"></div></details>
       </div>
       <div id="tree-wrap" hidden>
