@@ -1,0 +1,21 @@
+﻿Pass 4 verification — 2026-10-29
+
+Base: origin/main 1478973091be0a9b538fef8e614a50877f121b32.
+All 28 requested state IDs exist. 63 milestones; hero unchanged at 22 vs 3.
+35 verified / 22 provisional / 6 claimed. 18 ERAS sorted chronologically.
+The hero claim line reports 6 claims in the last 90 days.
+
+Checks:
+- node tools/check-pass4.cjs
+- node tools/verify-pass4.cjs (dist served at http://127.0.0.1:8000)
+- node tools/verify-pass4-controls.cjs
+- node tools/make-og.js
+- git diff --check
+
+Chromium: zero console/page errors at 1440 and 390 widths; no horizontal overflow.
+Linear, full deep-time, 2020 deep-time, and reading screenshots at both widths.
+Verification filter counts, tree states, historical-marker search exclusion,
+reduced-motion pulse suppression, keyboard and wheel zoom passed.
+Motion-enabled touch pinch checked with synthetic touch events, not physical hardware.
+Visual review: desktop full/2020 log views and mobile full log view.
+Playwright is a local tooling install; no runtime dependencies or build step added.

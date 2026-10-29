@@ -38,3 +38,9 @@ The app is static and portable. For GitHub Pages, select GitHub Actions as the P
 ## Updates roadmap
 
 Automatic ingestion is not enabled. Next: a scheduled Python collector for selected primary-source feeds; deduplication by DOI/URL; candidate review queue; approval before updating data.js. Keep API keys in server-side or GitHub Actions secrets, never browser code. Track corrections and source revisions. Do not treat an LLM summary as verification.
+
+## Verification and deep time
+
+Every DISCOVERIES entry has verification: verified, provisional, or claimed, and an optional short verifiedNote string. Upgrade claimed→provisional→verified only when a cited independent check exists; put the citation in verifiedNote. Initial states are editorial classifications; empty notes do not supply independent verification. Reading badges and graph/tree dots share these states; the verification filter combines with field, search, year, and Last 30 days filters.
+
+ERAS is a separate, sorted list of hand-picked context markers with id, year, title, line, and Wikipedia url. It never enters milestone search, hero statistics, cumulative totals, or recent filters. Deep time plots log10(years before CUTOFF + 1), reversed with today at right. Time dive uses the slider, wheel/pinch, or +/− keys while the graph is focused; reduced motion jumps immediately. The historical gap panel uses consecutive ERAS years and the median of consecutive milestone date gaps in the same last-90-day window as the hero (including same-day zero gaps). These differently selected lists cannot establish acceleration.

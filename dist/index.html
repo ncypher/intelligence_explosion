@@ -34,6 +34,7 @@
   <div class="intro-right">
     <span class="live-dot"></span> A GROWING, CURATED COLLECTION
     <p class="hero-stat" id="hero-stat" aria-live="polite"><strong id="stat-recent">—</strong> milestones in the last 90 days <span>·</span> <b id="stat-before">—</b> in the 90 days before</p>
+    <p class="hero-sub" id="unverified"></p>
     <p class="hero-sub" id="hero-sub"><b id="total">—</b> milestones <span>·</span> 5 fields <span>·</span> <b id="span">2020–2026</b></p>
     <button id="tour">Take a guided journey <span>↗</span></button>
   </div>
@@ -44,13 +45,17 @@
     <label class="search"><span>⌕</span><input id="search" type="search" placeholder="Find a discovery…" aria-label="Search discoveries"></label>
   </div>
   <div class="filters" id="filters"></div>
+  <div class="verification-controls"><p class="verification-legend">● Verified &nbsp; ◉ Provisional &nbsp; ○ Claimed</p><div class="filters" role="group" aria-label="Verification state"><button data-verification="all" aria-pressed="true">All</button><button data-verification="verified" aria-pressed="false">Verified</button><button data-verification="provisional" aria-pressed="false">Provisional</button><button data-verification="claimed" aria-pressed="false">Claimed</button></div></div>
   <div class="rangebar"><button id="recent" aria-pressed="false">Last 30 days</button><span id="coverage"></span></div>
   <div class="explorer">
     <div class="visual">
       <div class="canvas-note"><span id="shown"></span><small id="hint">SELECT A POINT TO TRACE WHAT IT BUILDS ON</small></div>
       <div id="graph-wrap">
-        <svg id="graph" viewBox="0 0 1000 560" role="group" aria-label="Cumulative curated milestones over calendar time"></svg>
+        <label class="axis-control">Time axis <select id="axis"><option value="linear">2020–2026 (linear)</option><option value="log">Deep time (log)</option></select></label>
+        <div id="time-dive" hidden><label for="dive">Time dive · <output id="dive-label">1440 → now</output></label><input id="dive" type="range" min="0" max="100" value="0" step="0.1" aria-label="Time dive from 1440 to 2020; higher values zoom in"><small>Scroll or pinch over the graph, use + / −, or drag the slider.</small></div>
+        <svg id="graph" tabindex="0" viewBox="0 0 1000 560" role="group" aria-label="Cumulative curated milestones over calendar time"></svg>
         <p class="graph-caption">Linear axes · one point per entry · gold arcs show documented “builds on” links. <a href="#howto">How to read this ↓</a></p>
+        <section id="gaps" hidden aria-label="Historical intervals"></section>
         <section class="measured" aria-labelledby="measured-title">
           <h2 id="measured-title">Measured elsewhere</h2>
           <p class="measured-framing">This collection is curated. These trends are measured. Read them together.</p>
@@ -115,6 +120,7 @@
     <p><span>01 / A MAP, NOT A MEASUREMENT</span> Every point is one curated entry, and a batch release counts once. The curve shows how this collection grows. It is not a measured rate of scientific progress. A selective collection cannot establish a scientific “knee” or an exponential growth rate.</p>
     <p><span>02 / WHY RECENT MONTHS LOOK DENSER</span> Recent announcements are easier to find and still fresh, and older periods have been backfilled by hand. The hero comparison counts entries in two equal 90-day windows ending at the editorial cutoff. More entries can mean more work, more announcements, more attention, or our own selection. It does not prove faster science.</p>
     <p><span>03 / WHAT “BUILDS ON” MEANS</span> A link appears only where the source documents the dependency, for example a model trained on, or using, an earlier system’s outputs. Missing links do not mean independence. Branches in the tree group fields. They do not claim causation.</p>
+    <p><span>05 / DEEP TIME AND SELECTION</span> Deep time uses a reversed logarithmic scale of years before the editorial cutoff; recent years occupy more space. Time dive narrows the window from 1440 to 2020. Historical markers are hand-picked context, not milestones. Comparing their gaps with recent entries illustrates selection bias: neither list is complete or consistently sampled, and shorter gaps do not establish acceleration.</p>
     <p><span>04 / FOLLOW THE EVIDENCE</span> Each entry links to a primary source and states its limits. Prediction, laboratory evidence, benchmarks and mathematical verification are different kinds of progress. The collection is curated by hand. Automatic updates are not enabled.</p>
   </div>
 </details>

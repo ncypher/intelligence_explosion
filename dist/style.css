@@ -21,3 +21,27 @@
 .howto{margin:18px 0 0;border:1px solid var(--line);border-radius:9px;background:#0b191c}.howto summary{cursor:pointer;padding:16px 22px;font-size:12px;color:var(--muted);list-style-position:inside}.howto summary span{font-size:9px;letter-spacing:2px;color:var(--gold);margin-right:12px}.howto[open] summary{border-bottom:1px solid var(--line)}.howto-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 60px;padding:12px 22px 6px;color:#8fa29e;font-size:11.5px;line-height:1.8}.howto-grid span{display:block;font-size:8px;letter-spacing:1.7px;color:var(--gold);margin-bottom:6px}
 @media(max-width:760px){h1{font-size:46px}.intro-right .hero-stat{display:block;margin:14px 0 4px}.intro-right .hero-stat strong{font-size:36px}.intro-right .hero-sub{display:block;margin:0 0 6px}.howto-grid{grid-template-columns:1fr}.howto summary{padding:14px}.lede br{display:none}}
 @media(max-width:760px){#graph{min-height:0}#graph text{font-size:24px}#graph .window-label{font-size:18px}.plot-point .pt{r:9}.plot-point circle:first-of-type{r:20}#graph .arc{stroke-width:2.5}.graph-caption{padding:0 4px}}
+
+/* Verification and deep-time context. */
+.verification-controls { padding: 0 24px 12px; }
+.verification-controls .filters { padding: 0; }
+.verification-legend { color: #a1b4b3; font-size: 12px; margin: 0 0 10px; }
+[data-verification][aria-pressed="true"] { color: #d5b67c; border-color: #d5b67c; }
+.verification-badge { text-transform: capitalize; margin: 5px 4px 5px 0; }
+.evidence.claimed { fill: #091518 !important; stroke-width: 1.5; animation: claim-pulse 4s ease-in-out infinite; }
+@keyframes claim-pulse { 50% { stroke-opacity: .4; } }
+.axis-control, #time-dive { display: block; margin: 14px 24px; color: #a1b4b3; font-size: 12px; }
+.axis-control select { max-width: 100%; background: #102226; color: #d4dfda; border: 1px solid #365052; padding: 8px; border-radius: 5px; }
+#time-dive[hidden] { display: none; }
+#time-dive input { width: 100%; display: block; margin: 12px 0; }
+#time-dive small { display: block; }
+.era-band { fill: #a1b4b3; opacity: .07; }
+#graph .era-label { fill: #a1b4b3; opacity: .65; font-size: 10px; }
+#gaps { margin: 18px 24px; padding: 18px; border: 1px solid #2c4245; border-radius: 8px; font-size: 12px; color: #a1b4b3; }
+#gaps ol { padding-left: 20px; columns: 2; column-gap: 28px; }
+#gaps li { margin-bottom: 7px; break-inside: avoid; }
+@media(max-width:600px) { #gaps ol { columns: 1; } .axis-control, #time-dive, #gaps { margin-left: 12px; margin-right: 12px; } }
+@media(prefers-reduced-motion:reduce) { .evidence.claimed { animation: none; } }
+
+@media(max-width:760px) { .plot-point .verification-ring { r: 12; } .intro-right #unverified { display:block; margin:12px 0; } }
+#graph:focus-visible, select:focus-visible { outline:2px solid var(--gold); outline-offset:3px; }
