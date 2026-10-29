@@ -3,6 +3,8 @@ const CUTOFF = '2026-10-29';
 const DISCOVERIES = [
   {
     "id": "halicin",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "A new use for halicin",
     "date": "2020-02-20",
     "field": "Biology",
@@ -17,6 +19,8 @@ const DISCOVERIES = [
   },
   {
     "id": "alphafold2",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "Protein folding takes a leap",
     "date": "2020-11-30",
     "field": "Biology",
@@ -31,6 +35,8 @@ const DISCOVERIES = [
   },
   {
     "id": "alphafold-db",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "A public atlas of protein shapes",
     "date": "2021-07-22",
     "field": "Biology",
@@ -47,6 +53,8 @@ const DISCOVERIES = [
   },
   {
     "id": "fusion-control",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "Learning to shape fusion plasma",
     "date": "2022-02-16",
     "field": "Physics",
@@ -61,6 +69,8 @@ const DISCOVERIES = [
   },
   {
     "id": "alphatensor",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "Finding new ways to multiply",
     "date": "2022-10-05",
     "field": "Mathematics",
@@ -75,6 +85,8 @@ const DISCOVERIES = [
   },
   {
     "id": "abaucin",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "A targeted antibiotic candidate",
     "date": "2023-05-25",
     "field": "Biology",
@@ -91,6 +103,8 @@ const DISCOVERIES = [
   },
   {
     "id": "alphadev",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "Faster sorting, discovered by AI",
     "date": "2023-06-07",
     "field": "Mathematics",
@@ -105,6 +119,8 @@ const DISCOVERIES = [
   },
   {
     "id": "rfdiffusion",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "Designing proteins from noise",
     "date": "2023-07-11",
     "field": "Biology",
@@ -119,6 +135,8 @@ const DISCOVERIES = [
   },
   {
     "id": "graphcast",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "Ten-day weather in under a minute",
     "date": "2023-11-14",
     "field": "Earth & climate",
@@ -133,6 +151,8 @@ const DISCOVERIES = [
   },
   {
     "id": "gnome",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "A larger map of possible materials",
     "date": "2023-11-29",
     "field": "Materials",
@@ -147,6 +167,8 @@ const DISCOVERIES = [
   },
   {
     "id": "funsearch",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "Programs that discover mathematics",
     "date": "2023-12-14",
     "field": "Mathematics",
@@ -161,6 +183,8 @@ const DISCOVERIES = [
   },
   {
     "id": "alphageometry",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "Geometry with machine-generated proofs",
     "date": "2024-01-17",
     "field": "Mathematics",
@@ -175,6 +199,8 @@ const DISCOVERIES = [
   },
   {
     "id": "alphafold3",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "Predicting molecular partnerships",
     "date": "2024-05-08",
     "field": "Biology",
@@ -191,6 +217,8 @@ const DISCOVERIES = [
   },
   {
     "id": "esm3",
+    "verification": "provisional",
+    "verifiedNote": "",
     "title": "A new fluorescent protein",
     "date": "2024-06-25",
     "field": "Biology",
@@ -205,6 +233,8 @@ const DISCOVERIES = [
   },
   {
     "id": "gencast",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "Forecasting possible weather futures",
     "date": "2024-12-04",
     "field": "Earth & climate",
@@ -221,6 +251,8 @@ const DISCOVERIES = [
   },
   {
     "id": "mattergen",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "Generating materials to a specification",
     "date": "2025-01-16",
     "field": "Materials",
@@ -235,6 +267,8 @@ const DISCOVERIES = [
   },
   {
     "id": "ai-co-scientist",
+    "verification": "provisional",
+    "verifiedNote": "",
     "title": "A multi-agent research collaborator",
     "date": "2025-02-19",
     "field": "Biology",
@@ -249,6 +283,8 @@ const DISCOVERIES = [
   },
   {
     "id": "evo2",
+    "verification": "provisional",
+    "verifiedNote": "",
     "title": "A genome model across all domains of life",
     "date": "2025-02-19",
     "field": "Biology",
@@ -263,6 +299,8 @@ const DISCOVERIES = [
   },
   {
     "id": "alphaevolve",
+    "verification": "provisional",
+    "verifiedNote": "",
     "title": "Algorithms that evolve through testing",
     "date": "2025-05-14",
     "field": "Mathematics",
@@ -279,6 +317,8 @@ const DISCOVERIES = [
   },
   {
     "id": "robin",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "Agents propose an eye-disease drug candidate",
     "date": "2025-05-20",
     "field": "Biology",
@@ -293,6 +333,8 @@ const DISCOVERIES = [
   },
   {
     "id": "aurora-earth",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "One model for several Earth forecasts",
     "date": "2025-05-21",
     "field": "Earth & climate",
@@ -307,6 +349,8 @@ const DISCOVERIES = [
   },
   {
     "id": "weatherlab-cyclones",
+    "verification": "provisional",
+    "verifiedNote": "",
     "title": "An experimental AI cyclone forecaster",
     "date": "2025-06-12",
     "field": "Earth & climate",
@@ -321,6 +365,8 @@ const DISCOVERIES = [
   },
   {
     "id": "alphagenome",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "Reading regulatory DNA at megabase scale",
     "date": "2025-06-25",
     "field": "Biology",
@@ -335,6 +381,8 @@ const DISCOVERIES = [
   },
   {
     "id": "deep-think-imo",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "Olympiad gold, graded by the Olympiad",
     "date": "2025-07-21",
     "field": "Mathematics",
@@ -349,6 +397,8 @@ const DISCOVERIES = [
   },
   {
     "id": "alphaearth",
+    "verification": "provisional",
+    "verifiedNote": "",
     "title": "A compact map of the planet's surface",
     "date": "2025-07-30",
     "field": "Earth & climate",
@@ -363,6 +413,8 @@ const DISCOVERIES = [
   },
   {
     "id": "opencrispr-1",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "An AI-designed gene editor, peer reviewed",
     "date": "2025-07-30",
     "field": "Biology",
@@ -377,6 +429,8 @@ const DISCOVERIES = [
   },
   {
     "id": "generative-antibiotics",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "Antibiotic candidates designed, not screened",
     "date": "2025-08-14",
     "field": "Biology",
@@ -394,6 +448,8 @@ const DISCOVERIES = [
   },
   {
     "id": "deep-loop-shaping",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "Quieting a gravitational-wave detector",
     "date": "2025-09-04",
     "field": "Physics",
@@ -408,6 +464,8 @@ const DISCOVERIES = [
   },
   {
     "id": "unstable-singularities",
+    "verification": "provisional",
+    "verifiedNote": "",
     "title": "New families of unstable fluid blow-ups",
     "date": "2025-09-18",
     "field": "Mathematics",
@@ -422,6 +480,8 @@ const DISCOVERIES = [
   },
   {
     "id": "crest",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "A robotic lab searches for a cheaper catalyst",
     "date": "2025-09-25",
     "field": "Materials",
@@ -436,6 +496,8 @@ const DISCOVERIES = [
   },
   {
     "id": "c2s-scale",
+    "verification": "provisional",
+    "verifiedNote": "",
     "title": "A cell model proposes a cancer hypothesis",
     "date": "2025-10-15",
     "field": "Biology",
@@ -450,6 +512,8 @@ const DISCOVERIES = [
   },
   {
     "id": "torax-cfs",
+    "verification": "provisional",
+    "verifiedNote": "",
     "title": "Simulating a fusion machine before it runs",
     "date": "2025-10-16",
     "field": "Physics",
@@ -466,6 +530,8 @@ const DISCOVERIES = [
   },
   {
     "id": "alphaevolve-math-scale",
+    "verification": "provisional",
+    "verifiedNote": "",
     "title": "Testing AlphaEvolve on 67 problems",
     "date": "2025-11-03",
     "field": "Mathematics",
@@ -482,6 +548,8 @@ const DISCOVERIES = [
   },
   {
     "id": "rfantibody",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "Antibodies designed from scratch",
     "date": "2025-11-05",
     "field": "Biology",
@@ -498,6 +566,8 @@ const DISCOVERIES = [
   },
   {
     "id": "alphaproof-nature",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "AlphaProof's method, peer reviewed",
     "date": "2025-11-12",
     "field": "Mathematics",
@@ -512,6 +582,8 @@ const DISCOVERIES = [
   },
   {
     "id": "weathernext2",
+    "verification": "provisional",
+    "verifiedNote": "",
     "title": "Faster ensembles of weather scenarios",
     "date": "2025-11-17",
     "field": "Earth & climate",
@@ -526,6 +598,8 @@ const DISCOVERIES = [
   },
   {
     "id": "aletheia-erdos",
+    "verification": "provisional",
+    "verifiedNote": "",
     "title": "A research agent tries open problems",
     "date": "2026-02-11",
     "field": "Mathematics",
@@ -542,6 +616,8 @@ const DISCOVERIES = [
   },
   {
     "id": "gluon-amplitudes",
+    "verification": "provisional",
+    "verifiedNote": "",
     "title": "A gluon amplitude thought to vanish",
     "date": "2026-02-13",
     "field": "Physics",
@@ -556,6 +632,8 @@ const DISCOVERIES = [
   },
   {
     "id": "melissa-forecast",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "An AI forecast of a record hurricane",
     "date": "2026-05-19",
     "field": "Earth & climate",
@@ -570,6 +648,8 @@ const DISCOVERIES = [
   },
   {
     "id": "unit-distance-disproof",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "Erdős's unit-distance conjecture disproved",
     "date": "2026-05-20",
     "field": "Mathematics",
@@ -584,6 +664,8 @@ const DISCOVERIES = [
   },
   {
     "id": "electrolytegpt",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "Generating whole battery electrolyte recipes",
     "date": "2026-06-03",
     "field": "Materials",
@@ -598,6 +680,8 @@ const DISCOVERIES = [
   },
   {
     "id": "openai-ten-advances",
+    "verification": "provisional",
+    "verifiedNote": "",
     "title": "Ten mathematical advances in one release",
     "date": "2026-08-01",
     "field": "Mathematics",
@@ -612,6 +696,8 @@ const DISCOVERIES = [
   },
   {
     "id": "weathernext-cyclones",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "An extra day of cyclone forecast skill",
     "date": "2026-08-06",
     "field": "Earth & climate",
@@ -626,6 +712,8 @@ const DISCOVERIES = [
   },
   {
     "id": "weathernext3",
+    "verification": "provisional",
+    "verifiedNote": "",
     "title": "Weather forecasts learn from live observations",
     "date": "2026-09-03",
     "field": "Earth & climate",
@@ -642,6 +730,8 @@ const DISCOVERIES = [
   },
   {
     "id": "alphagenome-atlas",
+    "verification": "provisional",
+    "verifiedNote": "",
     "title": "A map of nine billion possible DNA changes",
     "date": "2026-09-08",
     "field": "Biology",
@@ -658,6 +748,8 @@ const DISCOVERIES = [
   },
   {
     "id": "navier-stokes-2026",
+    "verification": "claimed",
+    "verifiedNote": "",
     "title": "A proposed Navier–Stokes resolution",
     "date": "2026-09-08",
     "field": "Mathematics",
@@ -672,6 +764,8 @@ const DISCOVERIES = [
   },
   {
     "id": "bootloops",
+    "verification": "provisional",
+    "verifiedNote": "",
     "title": "BootLoops: tools that grow across disciplines",
     "date": "2026-10-01",
     "field": "Physics",
@@ -686,6 +780,8 @@ const DISCOVERIES = [
   },
   {
     "id": "openai-math-collection",
+    "verification": "provisional",
+    "verifiedNote": "",
     "title": "OpenAI’s large mathematics release",
     "date": "2026-10-06",
     "field": "Mathematics",
@@ -700,6 +796,8 @@ const DISCOVERIES = [
   },
   {
     "id": "antigravity-peptide",
+    "verification": "claimed",
+    "verifiedNote": "",
     "title": "AI tools combine to find an antimicrobial lead",
     "date": "2026-10-15",
     "field": "Biology",
@@ -716,6 +814,8 @@ const DISCOVERIES = [
   },
   {
     "id": "art-enzyme",
+    "verification": "claimed",
+    "verifiedNote": "",
     "title": "An AI-flagged, CRISPR-like enzyme system",
     "date": "2026-09-23",
     "field": "Biology",
@@ -730,6 +830,8 @@ const DISCOVERIES = [
   },
   {
     "id": "iris-signaling",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "Reading which cell signals are switched on",
     "date": "2026-09-08",
     "field": "Biology",
@@ -744,6 +846,8 @@ const DISCOVERIES = [
   },
   {
     "id": "epipred-stxbp1",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "Sorting uncertain epilepsy variants",
     "date": "2026-10-15",
     "field": "Biology",
@@ -758,6 +862,8 @@ const DISCOVERIES = [
   },
   {
     "id": "mit-crystal-narratives",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "Teaching AI to read crystal structures",
     "date": "2026-10-18",
     "field": "Materials",
@@ -772,6 +878,8 @@ const DISCOVERIES = [
   },
   {
     "id": "designed-proteases",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "Molecular scissors designed from scratch",
     "date": "2026-10-14",
     "field": "Biology",
@@ -786,6 +894,8 @@ const DISCOVERIES = [
   },
   {
     "id": "scorpion-binders",
+    "verification": "provisional",
+    "verifiedNote": "",
     "title": "An AI-run campaign against scorpion toxins",
     "date": "2026-10-20",
     "field": "Biology",
@@ -800,6 +910,8 @@ const DISCOVERIES = [
   },
   {
     "id": "maestro-prostate",
+    "verification": "provisional",
+    "verifiedNote": "",
     "title": "Language models pick cancer drug partners",
     "date": "2026-10-21",
     "field": "Biology",
@@ -814,6 +926,8 @@ const DISCOVERIES = [
   },
   {
     "id": "pinal-text-protein",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "Designing working proteins from plain English",
     "date": "2026-10-21",
     "field": "Biology",
@@ -828,6 +942,8 @@ const DISCOVERIES = [
   },
   {
     "id": "subseasonal-ml",
+    "verification": "verified",
+    "verifiedNote": "",
     "title": "Forecast skill three to five weeks out",
     "date": "2026-10-21",
     "field": "Earth & climate",
@@ -842,6 +958,8 @@ const DISCOVERIES = [
   },
   {
     "id": "kls-conjecture",
+    "verification": "provisional",
+    "verifiedNote": "",
     "title": "The KLS conjecture, proved after 31 years",
     "date": "2026-10-21",
     "field": "Mathematics",
@@ -856,6 +974,8 @@ const DISCOVERIES = [
   },
   {
     "id": "rfd4-lenacapavir",
+    "verification": "provisional",
+    "verifiedNote": "",
     "title": "AI enzymes for an HIV drug's key step",
     "date": "2026-10-22",
     "field": "Biology",
@@ -872,6 +992,8 @@ const DISCOVERIES = [
   },
   {
     "id": "eth-disproof",
+    "verification": "claimed",
+    "verifiedNote": "",
     "title": "Two AIs break the Exponential Time Hypothesis",
     "date": "2026-10-26",
     "field": "Mathematics",
@@ -886,6 +1008,8 @@ const DISCOVERIES = [
   },
   {
     "id": "local-smoothing",
+    "verification": "claimed",
+    "verifiedNote": "",
     "title": "Local smoothing, Kakeya and restriction in every dimension",
     "date": "2026-10-26",
     "field": "Mathematics",
@@ -900,6 +1024,8 @@ const DISCOVERIES = [
   },
   {
     "id": "yang-mills-existence",
+    "verification": "claimed",
+    "verifiedNote": "",
     "title": "A claimed existence proof for Yang–Mills",
     "date": "2026-10-26",
     "field": "Physics",
@@ -911,5 +1037,135 @@ const DISCOVERIES = [
     "source": "OpenAI · research announcement",
     "url": "https://openai.com/index/building-scientific-understanding-with-academic-communities/",
     "buildsOn": []
+  }
+];
+
+// Context only; never included in milestone counts or search.
+const ERAS = [
+  {
+    "id": "era-1440",
+    "year": 1440,
+    "title": "Printing press",
+    "line": "Movable type helped knowledge travel.",
+    "url": "https://en.wikipedia.org/wiki/Printing_press"
+  },
+  {
+    "id": "era-1687",
+    "year": 1687,
+    "title": "Newton’s Principia",
+    "line": "A mathematical account of motion and gravity.",
+    "url": "https://en.wikipedia.org/wiki/Philosophi%C3%A6_Naturalis_Principia_Mathematica"
+  },
+  {
+    "id": "era-1769",
+    "year": 1769,
+    "title": "Watt’s steam engine",
+    "line": "Improved steam power expanded industry.",
+    "url": "https://en.wikipedia.org/wiki/Watt_steam_engine"
+  },
+  {
+    "id": "era-1831",
+    "year": 1831,
+    "title": "Electromagnetic induction",
+    "line": "Changing magnetic fields generate current.",
+    "url": "https://en.wikipedia.org/wiki/Electromagnetic_induction"
+  },
+  {
+    "id": "era-1876",
+    "year": 1876,
+    "title": "Telephone",
+    "line": "Speech travelled over electrical wires.",
+    "url": "https://en.wikipedia.org/wiki/Telephone"
+  },
+  {
+    "id": "era-1903",
+    "year": 1903,
+    "title": "Powered flight",
+    "line": "The Wright brothers demonstrated powered flight.",
+    "url": "https://en.wikipedia.org/wiki/Wright_brothers"
+  },
+  {
+    "id": "era-1928",
+    "year": 1928,
+    "title": "Penicillin",
+    "line": "An observation opened an era of antibiotics.",
+    "url": "https://en.wikipedia.org/wiki/Penicillin"
+  },
+  {
+    "id": "era-1945",
+    "year": 1945,
+    "title": "ENIAC",
+    "line": "Electronic computation entered a new scale.",
+    "url": "https://en.wikipedia.org/wiki/ENIAC"
+  },
+  {
+    "id": "era-1947",
+    "year": 1947,
+    "title": "Transistor",
+    "line": "A small switch transformed electronics.",
+    "url": "https://en.wikipedia.org/wiki/Transistor"
+  },
+  {
+    "id": "era-1953",
+    "year": 1953,
+    "title": "DNA double helix",
+    "line": "A structure explained genetic information storage.",
+    "url": "https://en.wikipedia.org/wiki/DNA"
+  },
+  {
+    "id": "era-1956",
+    "year": 1956,
+    "title": "Dartmouth AI workshop",
+    "line": "A workshop helped establish artificial intelligence.",
+    "url": "https://en.wikipedia.org/wiki/Dartmouth_workshop"
+  },
+  {
+    "id": "era-1969",
+    "year": 1969,
+    "title": "ARPANET",
+    "line": "A research network connected distant computers.",
+    "url": "https://en.wikipedia.org/wiki/ARPANET"
+  },
+  {
+    "id": "era-1971",
+    "year": 1971,
+    "title": "Microprocessor",
+    "line": "A processor fit onto an integrated circuit.",
+    "url": "https://en.wikipedia.org/wiki/Microprocessor"
+  },
+  {
+    "id": "era-1991",
+    "year": 1991,
+    "title": "World Wide Web",
+    "line": "Linked documents spread across the internet.",
+    "url": "https://en.wikipedia.org/wiki/World_Wide_Web"
+  },
+  {
+    "id": "era-2003",
+    "year": 2003,
+    "title": "Human Genome Project completed",
+    "line": "A collaborative project mapped the human genome.",
+    "url": "https://en.wikipedia.org/wiki/Human_Genome_Project"
+  },
+  {
+    "id": "era-2012",
+    "year": 2012,
+    "title": "AlexNet",
+    "line": "Deep learning advanced image recognition.",
+    "url": "https://en.wikipedia.org/wiki/AlexNet"
+  },
+  {
+    "id": "era-2017",
+    "year": 2017,
+    "title": "Transformer architecture",
+    "line": "Attention became a foundation for language models.",
+    "url": "https://en.wikipedia.org/wiki/Transformer_(deep_learning_architecture)"
+  },
+  {
+    "id": "era-2022",
+    "year": 2022,
+    "title": "ChatGPT",
+    "line": "Conversational AI reached a broad public.",
+    "url": "https://en.wikipedia.org/wiki/ChatGPT"
   }
 ];

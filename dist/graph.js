@@ -4,10 +4,28 @@ let graphPoints = new Map(), graphModelCache = null, graphDrawnOnce = false;
 const reducedMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 const dayMs = 864e5;
 
+let deepTime = false, diveZoom = 0, diveFrame = null;
+const diveYear = () => 1440 + 580 * diveZoom / 100;
+function setDive(value) {
+  const target = Math.max(0, Math.min(100, value));
+  cancelAnimationFrame(diveFrame);
+  const from = diveZoom, started = performance.now();
+  function frame(now) {
+    const k = reducedMotion() ? 1 : Math.min(1, (now - started) / 180);
+    diveZoom = from + (target - from) * (1 - Math.pow(1-k, 3));
+    $('dive').value = diveZoom;
+    $('dive-label').textContent = Math.round(diveYear()) + ' → now';
+    drawGraph(visible()); drawLineage(selected);
+    if (k < 1) diveFrame = requestAnimationFrame(frame);
+  }
+  diveFrame = requestAnimationFrame(frame);
+}
 function graphModel(items, recent) {
-  const end = Date.parse(CUTOFF), start = recent ? end - 29 * dayMs : Date.parse('2020-01-01');
+  const end = Date.parse(CUTOFF), start = deepTime ? (Date.UTC(1440,0,1) + (Date.UTC(2020,0,1)-Date.UTC(1440,0,1))*diveZoom/100) : recent ? end - 29 * dayMs : Date.parse('2020-01-01');
   const step = items.length > 40 ? 10 : 5, max = Math.max(step, Math.ceil(items.length / step) * step);
-  const xOf = t => GX0 + (GX1 - GX0) * (t - start) / (end - start);
+  const xOf = t => deepTime
+    ? GX1 - (GX1 - GX0) * Math.log10(Math.max(0, (end-t) / (365.2425 * dayMs)) + 1) / Math.log10((end-start) / (365.2425 * dayMs) + 1)
+    : GX0 + (GX1 - GX0) * (t - start) / (end - start);
   const yOf = c => GY0 - (GY0 - GY1) * c / max;
   return { start, end, max, step, xOf, yOf, points: items.map((d, i) => ({ d, count: i + 1, t: Date.parse(d.date), x: xOf(Date.parse(d.date)), y: yOf(i + 1) })) };
 }
@@ -17,6 +35,19 @@ function drawGraph(items) {
   graphModelCache = m;
   graphPoints = new Map(m.points.map(p => [p.d.id, p]));
   let s = '<text x="85" y="55">CUMULATIVE MILESTONES IN THIS COLLECTION</text>';
+  if (deepTime) {
+    let labelX = GX0 - 14;
+    for (const era of ERAS) {
+      const t = Date.UTC(era.year,0,1); if (t < m.start) continue;
+      const x = m.xOf(t);
+      labelX = Math.max(x - 5, labelX + 14);
+      s += '<a href="'+esc(era.url)+'" target="_blank" rel="noopener noreferrer" aria-label="'+esc(era.title+' — '+era.line)+'"><title>'+esc(era.year+' · '+era.title+' — '+era.line)+'</title><rect class="era-band" x="'+(x-3)+'" y="90" width="6" height="365"/><line x1="'+x+'" y1="455" x2="'+labelX+'" y2="440" stroke="#a1b4b3" stroke-opacity=".2"/><text class="era-label" transform="translate('+labelX+',440) rotate(-90)">'+esc(era.year+' · '+era.title)+'</text></a>';
+    }
+    const dates = data.filter(d => Date.parse(d.date) > cutoffMs - 90 * dayMs && Date.parse(d.date) <= cutoffMs).map(d=>Date.parse(d.date)).sort((a,b)=>a-b);
+    const gaps = dates.slice(1).map((t,i)=>(t-dates[i])/dayMs).sort((a,b)=>a-b), n=gaps.length;
+    const median = n ? (gaps[Math.floor((n-1)/2)] + gaps[Math.floor(n/2)])/2 : null;
+    $('gaps').innerHTML = '<h3>Gaps between context markers</h3><ol>'+ERAS.slice(1).map((e,i)=>'<li>'+esc(ERAS[i].title)+' → '+esc(e.title)+': <b>'+(e.year-ERAS[i].year)+' years</b></li>').join('')+'</ol><p>Median gap between milestones in the last 90 days: <b>'+(median == null ? 'Unavailable' : median.toLocaleString(undefined,{maximumFractionDigits:1})+' days')+'</b></p><p class="quiet">Context markers are illustrative and hand-picked; they are not part of the count.</p>';
+  }
   for (let v = 0; v <= m.max; v += m.step) {
     const y = m.yOf(v);
     s += `<line x1="${GX0}" x2="${GX1}" y1="${y}" y2="${y}" stroke="#2c4245"/><text x="65" y="${y + 4}" text-anchor="end">${v}</text>`;
@@ -27,11 +58,11 @@ function drawGraph(items) {
     s += `<rect class="window before" x="${w0}" y="${GY1 - 10}" width="${w1 - w0}" height="${GY0 - GY1 + 10}"/><rect class="window recent" x="${w1}" y="${GY1 - 10}" width="${GX1 - w1}" height="${GY0 - GY1 + 10}"/>`;
     s += `<text class="window-label" x="${GX1}" y="${GY1 - 16}" text-anchor="end">LAST 90 DAYS</text>`;
   }
-  const ticks = recentOnly
+  const ticks = deepTime ? [Math.ceil(diveYear()), 1900, 2000, 2020, 2026].filter((y,i,a)=>y>=diveYear() && a.indexOf(y)===i).map(y=>y+'-01-01') : recentOnly
     ? [0, 7, 14, 21, 29].map(k => new Date(m.end - (29 - k) * dayMs).toISOString().slice(0, 10))
     : Array.from({ length: 7 }, (_, i) => `${2020 + i}-01-01`);
-  for (const t of ticks) s += `<text x="${m.xOf(Date.parse(t))}" y="485" text-anchor="middle">${recentOnly ? t.slice(5) : t.slice(0, 4)}</text>`;
-  s += '<text x="510" y="520" text-anchor="middle">Publication / announcement date · linear calendar scale</text>';
+  for (const t of ticks) s += `<text x="${m.xOf(Date.parse(t))}" y="485" text-anchor="middle">${recentOnly && !deepTime ? t.slice(5) : t.slice(0, 4)}</text>`;
+  s += `<text x="510" y="520" text-anchor="middle">${deepTime ? "Years before cutoff + 1 · reversed log scale" : "Publication / announcement date · linear calendar scale"}</text>`;
   let path = `M${GX0} ${GY0}`;
   for (const p of m.points) path += ` H${p.x} V${p.y}`;
   path += ` H${GX1}`;
@@ -40,10 +71,12 @@ function drawGraph(items) {
   s += '<g id="cursor" style="display:none"><line y1="' + (GY1 - 10) + '" y2="' + GY0 + '" stroke="#d5b67c" stroke-opacity=".5" stroke-dasharray="2 4"/></g>';
   s += '<g id="lineage"></g><g id="points">';
   for (const p of m.points) {
-    s += `<g class="plot-point" tabindex="0" role="button" aria-label="${esc(p.d.title)}, ${p.d.date}, milestone ${p.count}" data-plot="${p.d.id}"><title>${esc(p.d.title)} · ${p.d.date} · count ${p.count}</title><circle cx="${p.x}" cy="${p.y}" r="10" fill="transparent"/><circle class="pt" cx="${p.x}" cy="${p.y}" r="5" fill="${colors[p.d.field]}"/></g>`;
+    s += `<g class="plot-point" tabindex="0" role="button" aria-label="${esc(p.d.title)}, ${p.d.date}, milestone ${p.count}, ${verificationLabel(p.d)}" data-plot="${p.d.id}"><title>${esc(p.d.title)} · ${p.d.date} · count ${p.count}</title><circle cx="${p.x}" cy="${p.y}" r="10" fill="transparent"/>${evidenceDot(p.d,p.x,p.y,5,'pt')}</g>`;
   }
   s += '</g>';
   $('graph').innerHTML = s;
+  $('graph').setAttribute('aria-label', deepTime ? 'Cumulative curated milestones, reversed logarithmic time; use plus or minus to zoom' : 'Cumulative curated milestones over calendar time');
+  document.querySelector('.graph-caption').innerHTML = (deepTime ? 'Reversed log time · faint bands are context only' : 'Linear axes') + ' · one point per entry · gold arcs show documented “builds on” links. <a href="#howto">How to read this ↓</a>';
   $('graph-table').innerHTML = '<table><thead><tr><th>Date</th><th>Milestone</th><th>Cumulative count</th></tr></thead><tbody>' + m.points.map(p => `<tr><td>${p.d.date}</td><td>${esc(p.d.title)}</td><td>${p.count}</td></tr>`).join('') + '</tbody></table>';
   document.querySelectorAll('[data-plot]').forEach(e => {
     e.onclick = () => choose(e.dataset.plot);

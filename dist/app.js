@@ -8,7 +8,11 @@ const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;'
 const cutoffMs = Date.parse(CUTOFF), recentStart = new Date(cutoffMs - 29 * 864e5).toISOString().slice(0, 10);
 const firstYear = +data[0].date.slice(0, 4), lastYear = +CUTOFF.slice(0, 4);
 const fmtDate = s => new Date(s + 'T00:00:00Z').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
-const visible = () => data.filter(d => +d.date.slice(0, 4) <= year && (!recentOnly || (d.date >= recentStart && d.date <= CUTOFF)) && (field === 'All fields' || d.field === field) && `${d.title} ${d.summary} ${d.field} ${d.aiRole}`.toLowerCase().includes(query));
+let verification = 'all';
+const verificationLabel = d => d.verification[0].toUpperCase() + d.verification.slice(1);
+const verificationBadge = d => '<span class="badge verification-badge">' + verificationLabel(d) + '</span>';
+const evidenceDot = (d,x,y,r,cls) => '<circle class="'+cls+' evidence '+d.verification+'" cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+(d.verification === 'claimed' ? '#091518' : colors[d.field])+'" stroke="'+colors[d.field]+'"/>' + (d.verification === 'provisional' ? '<circle class="verification-ring" cx="'+x+'" cy="'+y+'" r="'+(r+3)+'" fill="none" stroke="'+colors[d.field]+'" stroke-width=".8"/>' : '');
+const visible = () => data.filter(d => (verification === 'all' || d.verification === verification) && +d.date.slice(0, 4) <= year && (!recentOnly || (d.date >= recentStart && d.date <= CUTOFF)) && (field === 'All fields' || d.field === field) && `${d.title} ${d.summary} ${d.field} ${d.aiRole}`.toLowerCase().includes(query));
 
 // Lineage lookups: buildsOn (ancestors) and the reverse "led to" relation.
 const ledTo = new Map(data.map(d => [d.id, []]));
@@ -20,6 +24,7 @@ const descendants = id => closure(id, n => ledTo.get(n) || []);
 // Hero: two equal 90-day windows ending at the editorial cutoff, computed from data.
 (function hero() {
   const day = 864e5, inWin = (a, b) => data.filter(d => { const t = Date.parse(d.date); return t > cutoffMs - a * day && t <= cutoffMs - b * day }).length;
+  $('unverified').textContent = data.filter(d => d.verification === 'claimed' && Date.parse(d.date) > cutoffMs - 90 * day && Date.parse(d.date) <= cutoffMs).length + ' of the last-90-day milestones are still unverified claims';
   $('stat-recent').textContent = inWin(90, 0);
   $('stat-before').textContent = inWin(180, 90);
   $('total').textContent = data.length;
@@ -53,7 +58,7 @@ function draw(items) {
       const side = j % 2 ? 1 : -1, off = 17, nx = bx - dy / len * off * side, ny = by + dx / len * off * side, shown = items.includes(d);
       out += `<path class="twig" stroke="${colors[f]}" opacity="${shown ? '.45' : '.07'}" d="M${bx} ${by} L${nx} ${ny}"/>`;
       if (!shown) return;
-      leaves += `<g class="leaf ${selected === d.id ? 'chosen' : ''}" role="button" tabindex="0" aria-label="${esc(d.title)}, ${d.date}" data-id="${d.id}" data-x="${nx}" data-y="${ny}"><circle class="halo" cx="${nx}" cy="${ny}" r="12" fill="${colors[f]}"/><circle class="core" cx="${nx}" cy="${ny}" r="5.5" fill="${colors[f]}"/></g>`;
+      leaves += `<g class="leaf ${selected === d.id ? 'chosen' : ''}" role="button" tabindex="0" aria-label="${esc(d.title)}, ${d.date}, ${verificationLabel(d)}" data-id="${d.id}" data-x="${nx}" data-y="${ny}"><circle class="halo" cx="${nx}" cy="${ny}" r="12" fill="${colors[f]}"/>${evidenceDot(d,nx,ny,5.5,'core')}</g>`;
     });
   });
   out += `<g id="leaves">${leaves}</g><g id="tree-tip" aria-hidden="true"></g></g>`;
@@ -87,7 +92,7 @@ function choose(id) {
   const lineage = up.length || down.length
     ? (up.length ? `<h3>BUILDS ON</h3><div class="chips">${chips(up)}</div>` : '') + (down.length ? `<h3>LED TO</h3><div class="chips">${chips(down)}</div>` : '')
     : '<h3>LINEAGE</h3><p class="quiet">No documented dependency in this collection yet.</p>';
-  $('detail').innerHTML = `<div class="meta"><span class="dot" style="--color:${colors[d.field]}"></span>${esc(d.field.toUpperCase())} &nbsp; / &nbsp; ${d.date.slice(0, 4)}</div><h2>${esc(d.title)}</h2><span class="badge">${esc(d.status)}</span><p>${esc(d.summary)}</p><h3>WHAT DID AI CONTRIBUTE?</h3><p>${esc(d.aiRole)}</p><h3>WHY IT MATTERS</h3><p>${esc(d.impact)}</p><h3>THE LIMITS</h3><p>${esc(d.limit)}</p>${lineage}<a class="source" target="_blank" rel="noopener noreferrer" href="${esc(d.url)}">Read the primary source ↗<small>${esc(d.source)} · ${d.date}</small></a><div class="detail-count">${tourIndex >= 0 ? `GUIDED JOURNEY · ${tourIndex + 1} / 5 &nbsp; <button id="next">${tourIndex === 4 ? 'Finish' : 'Next →'}</button>` : 'A LEAF IN THE STORY. NOT THE WHOLE STORY.'}</div>`;
+  $('detail').innerHTML = `<div class="meta"><span class="dot" style="--color:${colors[d.field]}"></span>${esc(d.field.toUpperCase())} &nbsp; / &nbsp; ${d.date.slice(0, 4)}</div><h2>${esc(d.title)}</h2><span class="badge">${esc(d.status)}</span> ${verificationBadge(d)}${d.verifiedNote ? `<p class="quiet">Independent check: ${esc(d.verifiedNote)}</p>` : ''}<p>${esc(d.summary)}</p><h3>WHAT DID AI CONTRIBUTE?</h3><p>${esc(d.aiRole)}</p><h3>WHY IT MATTERS</h3><p>${esc(d.impact)}</p><h3>THE LIMITS</h3><p>${esc(d.limit)}</p>${lineage}<a class="source" target="_blank" rel="noopener noreferrer" href="${esc(d.url)}">Read the primary source ↗<small>${esc(d.source)} · ${d.date}</small></a><div class="detail-count">${tourIndex >= 0 ? `GUIDED JOURNEY · ${tourIndex + 1} / 5 &nbsp; <button id="next">${tourIndex === 4 ? 'Finish' : 'Next →'}</button>` : 'A LEAF IN THE STORY. NOT THE WHOLE STORY.'}</div>`;
   if ($('next')) $('next').onclick = nextTour;
   document.querySelectorAll('[data-chip]').forEach(b => b.onclick = () => { tourIndex = -1; choose(b.dataset.chip) });
   document.querySelectorAll('.leaf').forEach(e => e.classList.toggle('chosen', e.dataset.id === id));
@@ -99,6 +104,7 @@ function render() {
   const items = visible();
   pausedAt = null;
   document.querySelectorAll('[data-field]').forEach(b => { const active = b.dataset.field === field; b.classList.toggle('selected', active); b.setAttribute('aria-pressed', active) });
+  document.querySelectorAll('[data-verification]').forEach(b => b.setAttribute('aria-pressed', b.dataset.verification === verification));
   $('year-label').textContent = year;
   $('coverage').textContent = recentOnly ? `${fmtDate(recentStart).replace(/, \d{4}$/, '')}–${fmtDate(CUTOFF)} · filtered collection` : `Through ${fmtDate(CUTOFF)} · publication dates`;
   $('shown').textContent = `${items.length} of ${data.length} milestones · through ${year}`;
@@ -109,7 +115,7 @@ function render() {
   $('list').hidden = view !== 'list' || !items.length;
   $('empty').hidden = !!items.length;
   draw(items);
-  $('list').innerHTML = items.slice().reverse().map(d => `<button class="row" data-entry="${d.id}"><small><span class="dot" style="--color:${colors[d.field]}"></span>${esc(d.field)} · ${d.date}</small><strong>${esc(d.title)}</strong><p>${esc(d.summary)}</p></button>`).join('');
+  $('list').innerHTML = items.slice().reverse().map(d => `<button class="row" data-entry="${d.id}"><small><span class="dot" style="--color:${colors[d.field]}"></span>${esc(d.field)} · ${d.date}</small>${verificationBadge(d)}<strong>${esc(d.title)}</strong><p>${esc(d.summary)}</p></button>`).join('');
   document.querySelectorAll('[data-entry]').forEach(b => b.onclick = () => choose(b.dataset.entry));
   if (items.find(d => d.id === selected)) choose(selected);
   else if (items.length) choose(items[items.length - 1].id);
@@ -164,8 +170,19 @@ $('reset').onclick = () => { zoom = 1; applyZoom() };
 $('recent').onclick = () => { stop(); recentOnly = !recentOnly; $('recent').setAttribute('aria-pressed', recentOnly); if (recentOnly) { year = lastYear; $('year').value = year } tourIndex = -1; render() };
 const journey = () => fields.map(f => data.find(d => d.field === f)).filter(Boolean);
 function nextTour() { tourIndex++; if (tourIndex >= 5) { tourIndex = -1; choose(selected); return } choose(journey()[tourIndex].id) }
-$('tour').onclick = () => { stop(); field = 'All fields'; query = ''; recentOnly = false; $('recent').setAttribute('aria-pressed', 'false'); $('search').value = ''; year = lastYear; $('year').value = year; tourIndex = -1; render(); nextTour(); $('detail').scrollIntoView({ behavior: reducedMotion() ? 'auto' : 'smooth', block: 'nearest' }) };
+$('tour').onclick = () => { stop(); verification = 'all'; field = 'All fields'; query = ''; recentOnly = false; $('recent').setAttribute('aria-pressed', 'false'); $('search').value = ''; year = lastYear; $('year').value = year; tourIndex = -1; render(); nextTour(); $('detail').scrollIntoView({ behavior: reducedMotion() ? 'auto' : 'smooth', block: 'nearest' }) };
+document.querySelectorAll('[data-verification]').forEach(b => b.onclick = () => { stop(); verification = b.dataset.verification; render() });
+$('axis').onchange = () => { stop(); deepTime = $('axis').value === 'log'; $('time-dive').hidden = $('gaps').hidden = !deepTime; render() };
+$('dive').oninput = e => setDive(+e.target.value);
+$('graph').addEventListener('wheel', e => { if (!deepTime) return; e.preventDefault(); setDive(diveZoom - e.deltaY * .08) }, { passive: false });
+$('graph').onkeydown = e => { if (deepTime && ['+', '=', '-'].includes(e.key)) { e.preventDefault(); setDive(diveZoom + (e.key === '-' ? -5 : 5)) } };
 $('about').onclick = () => $('info').showModal();
 $('close').onclick = () => $('info').close();
 $('info').onclick = e => { if (e.target === $('info')) $('info').close() };
 render();
+
+// Touch pinch zoom uses the same bounded window as the keyboard and slider.
+let pinchDistance = null;
+$('graph').addEventListener('touchstart', e => { if (deepTime && e.touches.length === 2) { e.preventDefault(); pinchDistance = Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY) } }, { passive: false });
+$('graph').addEventListener('touchmove', e => { if (!deepTime || e.touches.length !== 2 || pinchDistance == null) return; e.preventDefault(); const distance = Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY); setDive(diveZoom + (distance-pinchDistance)*.4); pinchDistance = distance }, { passive: false });
+$('graph').addEventListener('touchend', () => { pinchDistance = null });
