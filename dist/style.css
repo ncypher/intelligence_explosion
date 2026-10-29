@@ -45,3 +45,7 @@
 
 @media(max-width:760px) { .plot-point .verification-ring { r: 12; } .intro-right #unverified { display:block; margin:12px 0; } }
 #graph:focus-visible, select:focus-visible { outline:2px solid var(--gold); outline-offset:3px; }
+
+footer { flex-wrap: wrap; align-items: center; gap: 16px; }
+footer nav { display: flex; flex-wrap: wrap; gap: 12px 22px; }
+footer nav a:hover { color: var(--gold); }
