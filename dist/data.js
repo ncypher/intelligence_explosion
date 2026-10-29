@@ -822,8 +822,8 @@ const DISCOVERIES = [
     "impact": "Lowers the barrier to protein design: describe the function, get a testable candidate.",
     "limit": "Four successful task types do not establish general reliability; screening was largely computational before the lab tests.",
     "status": "Peer reviewed (Nature) · laboratory validation",
-    "source": "bioRxiv · final preprint of the Nature paper",
-    "url": "https://www.biorxiv.org/content/10.1101/2024.08.01.606258v3",
+    "source": "Nature · published paper",
+    "url": "https://doi.org/10.1038/s41586-026-11205-z",
     "buildsOn": []
   },
   {
@@ -880,8 +880,8 @@ const DISCOVERIES = [
     "impact": "If it holds, a foundational assumption of fine-grained complexity falls, forcing a review of hundreds of conditional hardness results.",
     "limit": "The speedup is tiny in practice and does not deliver fast algorithms. ETH's originators and Ryan Williams are reviewing OpenAI's version; Lean checks the formal statement, not whether it captures the intended claim.",
     "status": "Announced proofs · Lean formalizations · expert review under way",
-    "source": "Science · news report on both claims",
-    "url": "https://www.science.org/content/article/ai-cracks-27-year-old-pillar-computer-science-openai-and-anthropic-claim",
+    "source": "Anthropic · formal-math ETH proof repository",
+    "url": "https://github.com/anthropics/formal-math/tree/main/eth",
     "buildsOn": []
   },
   {
@@ -894,8 +894,8 @@ const DISCOVERIES = [
     "impact": "Would close a cluster of central problems in harmonic analysis at once rather than dimension by dimension.",
     "limit": "Company claim; the proof was posted publicly for checking but had not been independently verified at announcement.",
     "status": "Announced proof · Lean formalization · awaiting expert review",
-    "source": "Unite.AI · report on OpenAI announcement",
-    "url": "https://www.unite.ai/openai-says-its-models-produced-three-proofs-in-math-cs-and-physics/",
+    "source": "OpenAI · research announcement",
+    "url": "https://openai.com/index/building-scientific-understanding-with-academic-communities/",
     "buildsOn": []
   },
   {
@@ -908,8 +908,8 @@ const DISCOVERIES = [
     "impact": "Would put the mathematics behind the Standard Model's strong force on rigorous footing.",
     "limit": "The proof was withheld pending review by a committee chaired by Nobel laureate David Gross; outside experts could not yet check it.",
     "status": "Announced · proof not yet public · committee review",
-    "source": "Scientific American · news report",
-    "url": "https://www.scientificamerican.com/article/openai-just-scooped-human-researchers-on-a-million-dollar-quantum-math-problem/",
+    "source": "OpenAI · research announcement",
+    "url": "https://openai.com/index/building-scientific-understanding-with-academic-communities/",
     "buildsOn": []
   }
 ];
