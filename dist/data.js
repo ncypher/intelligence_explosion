@@ -1,5 +1,5 @@
 // Editorial cutoff: the last date the collection was reviewed. Windows and axes are computed from it.
-const CUTOFF = '2026-10-19';
+const CUTOFF = '2026-10-29';
 const DISCOVERIES = [
   {
     "id": "halicin",
@@ -754,6 +754,162 @@ const DISCOVERIES = [
     "status": "Peer reviewed · limited laboratory validation",
     "source": "Journal of Clinical Investigation · October 15 research announcement",
     "url": "https://doi.org/10.1172/jci207160",
+    "buildsOn": []
+  },
+  {
+    "id": "mit-crystal-narratives",
+    "title": "Teaching AI to read crystal structures",
+    "date": "2026-10-18",
+    "field": "Materials",
+    "summary": "MIT researchers trained a multimodal model that aligns 3D crystal structures with generated text describing composition, properties, processing and applications. It beat text-only baselines at retrieving materials by property and flagged solid-state lithium-electrolyte candidates that were independently considered promising.",
+    "aiRole": "Contrastive learning paired atomic structures with synthetic narratives so a model could search materials by described function.",
+    "impact": "Moves materials AI beyond reading names and formulas toward reasoning about how atoms are arranged.",
+    "limit": "A retrieval and ranking tool; flagged electrolyte candidates were not synthesized or tested in this work.",
+    "status": "Peer reviewed (Nature Communications) · computational",
+    "source": "MIT News via Phys.org · Nature Communications paper",
+    "url": "https://phys.org/news/2026-10-ai-crystal-view-materials-world.html",
+    "buildsOn": []
+  },
+  {
+    "id": "designed-proteases",
+    "title": "Molecular scissors designed from scratch",
+    "date": "2026-10-14",
+    "field": "Biology",
+    "summary": "Two Nature papers from protein-design groups reported de novo cysteine proteases and metalloproteases that cut chosen target sites. Customized versions cleaved fragments of amyloid-beta and serum amyloid A, proteins linked to Alzheimer's disease and systemic amyloidosis.",
+    "aiRole": "Generative protein-design models built enzyme active sites and scaffolds around prescribed cut sites, followed by laboratory testing.",
+    "impact": "Designing enzymes that cut a chosen protein, rather than repurposing natural ones, opens new therapeutic and industrial routes.",
+    "limit": "Laboratory and cell experiments only; activity is modest compared with the best natural enzymes, and nothing has been tested in people.",
+    "status": "Peer reviewed (Nature) · laboratory validation",
+    "source": "Nature · De novo design of cysteine proteases",
+    "url": "https://www.nature.com/articles/s41586-026-11143-w",
+    "buildsOn": []
+  },
+  {
+    "id": "scorpion-binders",
+    "title": "An AI-run campaign against scorpion toxins",
+    "date": "2026-10-20",
+    "field": "Biology",
+    "summary": "Anthropic reported that an internal Claude research model ran a mostly autonomous 64-hour protein-design campaign, generating 318,484 candidate minibinders against five scorpion neurotoxins. Contract labs tested 211 designs and 17 met the binding criteria, two at single-digit nanomolar affinity. All 211 designs and data were released.",
+    "aiRole": "The model chose and ran 12 design tools, screened candidates, selected most of the tested designs and drafted the report, with four researcher follow-up prompts.",
+    "impact": "Shows an AI agent carrying a drug-discovery-style design loop from prompt to lab-tested candidates in under three days, for a neglected-disease target.",
+    "limit": "Binding is not neutralization: no cell or animal tests were run, and none of the multi-toxin designs met criteria for more than one toxin. This is not an antivenom.",
+    "status": "Developer report · contract-lab binding assays",
+    "source": "Anthropic · research report",
+    "url": "https://anthropic.com/research/claude-scorpion-toxin-binder-design",
+    "buildsOn": []
+  },
+  {
+    "id": "maestro-prostate",
+    "title": "Language models pick cancer drug partners",
+    "date": "2026-10-21",
+    "field": "Biology",
+    "summary": "UCLA's MAESTRO platform used large language models, given prostate-cancer biology and resistance mechanisms, to screen 3,592 natural products as partners for the drug enzalutamide. Of 150 picks tested in 3D tumor-cell cultures, 23 worked better together; berberine was synergistic in all four models.",
+    "aiRole": "LLMs reasoned over pathway knowledge to rank combination candidates and explain why they might work, without large combination training sets.",
+    "impact": "Offers a cheaper, explainable way to prioritize combinations against treatment resistance.",
+    "limit": "Cell-culture results only; nothing has been tested in animals or patients.",
+    "status": "Laboratory validation · 3D cell cultures",
+    "source": "UCLA CNSI · UCLA Health announcement",
+    "url": "https://cnsi.ucla.edu/october-21-2026-new-ai-platform-helps-uncover-promising-cancer-drug-combinations/",
+    "buildsOn": []
+  },
+  {
+    "id": "pinal-text-protein",
+    "title": "Designing working proteins from plain English",
+    "date": "2026-10-21",
+    "field": "Biology",
+    "summary": "Westlake University's Pinal, a 16-billion-parameter model trained on 1.7 billion protein–text pairs, turned natural-language descriptions into a fluorescent protein, a plastic-degrading PET hydrolase, an alcohol dehydrogenase and a metabolic H-protein. All four showed the intended function in the lab; the H-protein raised product titer 1.7-fold without iterative optimization. Published in Nature on October 21.",
+    "aiRole": "The model translated text into structural tokens, then designed sequences conditioned on both structure and description.",
+    "impact": "Lowers the barrier to protein design: describe the function, get a testable candidate.",
+    "limit": "Four successful task types do not establish general reliability; screening was largely computational before the lab tests.",
+    "status": "Peer reviewed (Nature) · laboratory validation",
+    "source": "Nature · published paper",
+    "url": "https://doi.org/10.1038/s41586-026-11205-z",
+    "buildsOn": []
+  },
+  {
+    "id": "subseasonal-ml",
+    "title": "Forecast skill three to five weeks out",
+    "date": "2026-10-21",
+    "field": "Earth & climate",
+    "summary": "A Nature study reported a machine-learning tool that refines both physics-based and AI weather models in the subseasonal range, improving forecasts of precipitation, temperature and pressure three to five weeks ahead, including early warning of heat, cold, rain and flood extremes.",
+    "aiRole": "Machine learning post-processed and corrected existing forecast models in a range where both had been weak.",
+    "impact": "The 'gap' between weather and seasonal forecasts matters for agriculture, water and disaster planning.",
+    "limit": "Gains are relative to existing models; subseasonal skill remains far lower than for short-range forecasts.",
+    "status": "Peer reviewed (Nature) · retrospective evaluation",
+    "source": "Nature · research briefing",
+    "url": "https://www.nature.com/articles/d41586-026-03077-0",
+    "buildsOn": []
+  },
+  {
+    "id": "kls-conjecture",
+    "title": "The KLS conjecture, proved after 31 years",
+    "date": "2026-10-21",
+    "field": "Mathematics",
+    "summary": "Zhao Song and Microsoft Research's Xinzhi Zhang proved the 1995 Kannan–Lovász–Simonovits conjecture, giving a dimension-free bound on how log-concave distributions can be cut. A separate proof by Bizeul, Klartag and Lehec appeared days later, and a Lean 4 formalization was released.",
+    "aiRole": "AI agents explored about 100 research trajectories while the researchers pruned and redirected them; unguided attempts on a similar token budget fell short. The independent proof's authors credit ChatGPT with most of its ideas.",
+    "impact": "Turns a widely used assumption in high-dimensional sampling, optimization and volume computation into a theorem.",
+    "limit": "Peer review is ongoing; the formalization combines the key criterion with additional work rather than checking every paper line by line.",
+    "status": "Preprints · independent proof and Lean formalization",
+    "source": "Microsoft Research · blog announcement",
+    "url": "https://www.microsoft.com/en-us/research/blog/solving-a-31-year-old-grand-challenge-in-mathematics-the-kls-conjecture/",
+    "buildsOn": []
+  },
+  {
+    "id": "rfd4-lenacapavir",
+    "title": "AI enzymes for an HIV drug's key step",
+    "date": "2026-10-22",
+    "field": "Biology",
+    "summary": "The Institute for Protein Design and NVIDIA released RFD4-Proteina, an open-source successor in the RFdiffusion line, and Manchester scientists used it to design enzymes for an amide-bond step in making the HIV drug lenacapavir. Four of 67 designs were active; the best converted 79% of the starting amine.",
+    "aiRole": "A unified generative model designed new enzyme sequences and structures, reported at 5–10 times the success rate of earlier models.",
+    "impact": "Points toward greener, cheaper biocatalytic routes to essential medicines.",
+    "limit": "Proof of concept at lab scale; only a small fraction of designs worked, and manufacturing use would need further optimization.",
+    "status": "Laboratory validation · open-source model",
+    "source": "University of Manchester · news release",
+    "url": "https://www.manchester.ac.uk/about/news/ai-designed-enzyme-for-drug-synthesis/",
+    "buildsOn": [
+      "rfdiffusion"
+    ]
+  },
+  {
+    "id": "eth-disproof",
+    "title": "Two AIs break the Exponential Time Hypothesis",
+    "date": "2026-10-26",
+    "field": "Mathematics",
+    "summary": "OpenAI and Anthropic each announced that an internal model had found, on the same day (October 16), a subexponential-time algorithm for 3-SAT, refuting the 1999 Exponential Time Hypothesis. Both posted Lean formalizations. Anthropic counted more than 800 papers whose results assume ETH.",
+    "aiRole": "The models produced the core algorithms; Anthropic says Claude used 14 million output tokens with no human input in the discovery, before researchers helped refine the write-up.",
+    "impact": "If it holds, a foundational assumption of fine-grained complexity falls, forcing a review of hundreds of conditional hardness results.",
+    "limit": "The speedup is tiny in practice and does not deliver fast algorithms. ETH's originators and Ryan Williams are reviewing OpenAI's version; Lean checks the formal statement, not whether it captures the intended claim.",
+    "status": "Announced proofs · Lean formalizations · expert review under way",
+    "source": "Anthropic · formal-math ETH proof repository",
+    "url": "https://github.com/anthropics/formal-math/tree/main/eth",
+    "buildsOn": []
+  },
+  {
+    "id": "local-smoothing",
+    "title": "Local smoothing, Kakeya and restriction in every dimension",
+    "date": "2026-10-26",
+    "field": "Mathematics",
+    "summary": "OpenAI said its models proved Sogge's 1991 local smoothing conjecture for the wave equation in every dimension, using a novel auxiliary PDE, which would also settle the Kakeya and Stein restriction conjectures in all dimensions. Humans had reached two dimensions for local smoothing (2019) and three for Kakeya (Wang and Zahl, 2025).",
+    "aiRole": "An internal model generated the natural-language proof on October 18; it was formalized in Lean the next day.",
+    "impact": "Would close a cluster of central problems in harmonic analysis at once rather than dimension by dimension.",
+    "limit": "Company claim; the proof was posted publicly for checking but had not been independently verified at announcement.",
+    "status": "Announced proof · Lean formalization · awaiting expert review",
+    "source": "OpenAI · research announcement",
+    "url": "https://openai.com/index/building-scientific-understanding-with-academic-communities/",
+    "buildsOn": []
+  },
+  {
+    "id": "yang-mills-existence",
+    "title": "A claimed existence proof for Yang–Mills",
+    "date": "2026-10-26",
+    "field": "Physics",
+    "summary": "OpenAI claimed a 1,147-page proof that four-dimensional quantum Yang–Mills theory and QCD exist as rigorous quantum field theories, building on Balaban's constructive program. This is the 'existence' half of a Clay Millennium Prize problem; the mass gap remains open. Ethan Sussman and Anthropic's Levent Alpöge had been publicly pursuing the same goal with Claude.",
+    "aiRole": "Internal models generated the proof (pure Yang–Mills on September 9, QCD on September 18) and a Lean formalization completed October 16.",
+    "impact": "Would put the mathematics behind the Standard Model's strong force on rigorous footing.",
+    "limit": "The proof was withheld pending review by a committee chaired by Nobel laureate David Gross; outside experts could not yet check it.",
+    "status": "Announced · proof not yet public · committee review",
+    "source": "OpenAI · research announcement",
+    "url": "https://openai.com/index/building-scientific-understanding-with-academic-communities/",
     "buildsOn": []
   }
 ];
