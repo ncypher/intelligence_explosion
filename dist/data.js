@@ -1,6 +1,54 @@
 // Editorial cutoff: the last date the collection was reviewed. Windows and axes are computed from it.
-const CUTOFF = '2026-10-29';
+const CUTOFF = '2026-11-05';
 const DISCOVERIES = [
+{
+  "id": "distributed-biology-atlas",
+  "date": "2026-10-21",
+  "title": "Thousands of agents explore brain-cell data",
+  "summary": "OpenAI, PerturbAI and Scripps Research report using thousands of agents to interpret an existing mouse-brain CRISPR atlas in 32 minutes, producing hypotheses for follow-up experiments.",
+  "aiRole": "GPT-Rosalind agents analyzed gene perturbations and connected cellular responses with scientific literature.",
+  "impact": "Illustrates how parallel analysis can help scientists investigate more of a large dataset and prioritize experiments.",
+  "limit": "The runtime covers analysis of existing data, not experimental discovery from scratch. Proposed mechanisms remain hypotheses; this does not establish treatments for brain disease.",
+  "status": "Research announcement; hypothesis generation",
+  "source": "OpenAI · distributed biological reasoning research",
+  "url": "https://openai.com/index/scaling-ai-research-for-complex-biological-data/",
+  "field": "Biology",
+  "verification": "provisional",
+  "verifiedNote": "Primary source checked November 5, 2026; independent replication not established in this review.",
+  "buildsOn": []
+},
+{
+  "id": "chefnmr2",
+  "date": "2026-10-31",
+  "title": "Reading natural-product structures from spectra",
+  "summary": "A Princeton-led team reports that ChefNMR2-Agent elucidated the structures of four previously unreported natural products. The preprint was posted October 31, ahead of a November 2 announcement.",
+  "aiRole": "A molecular generative model proposes structures from molecular formulae and NMR peak lists; a reasoning agent investigates and refines candidates.",
+  "impact": "Combines a specialized scientific model with general reasoning to address a bottleneck in natural-product research.",
+  "limit": "This is a preprint with author-reported evaluations, not independent replication. Four natural products are a limited demonstration; structure identification does not establish therapeutic usefulness.",
+  "status": "Preprint; structure-elucidation demonstration",
+  "source": "bioRxiv · ChefNMR2 preprint",
+  "url": "https://www.biorxiv.org/content/10.64898/2026.10.29.762711v1",
+  "field": "Biology",
+  "verification": "provisional",
+  "verifiedNote": "Primary source checked November 5, 2026; independent replication not established in this review.",
+  "buildsOn": []
+},
+{
+  "id": "autodna",
+  "date": "2026-11-04",
+  "title": "AI agents coordinate a working DNA laboratory",
+  "summary": "AutoDNA orchestrated more than 20 instrument types across over 11,000 steps in nucleic-acid experiments. Demonstrations included DNA synthesis and an end-to-end DNA data-storage cycle.",
+  "aiRole": "A multi-agent system planned and executed workflows across laboratory instruments, coordinating concurrent experiment requests.",
+  "impact": "Connects AI planning to physical experiments; the authors report 3.2-fold faster concurrent protocol execution in their evaluation.",
+  "limit": "Demonstrations used a purpose-built laboratory and selected workflows. People still maintained hardware and replenished supplies; the reported speedup is not a general discovery-rate measurement.",
+  "status": "Peer-reviewed; physical laboratory demonstration",
+  "source": "Nature · AutoDNA research paper",
+  "url": "https://www.nature.com/articles/s41586-026-11228-6",
+  "field": "Biology",
+  "verification": "provisional",
+  "verifiedNote": "Primary source checked November 5, 2026; independent replication not established in this review.",
+  "buildsOn": []
+},
   {
     "id": "halicin",
     "verification": "verified",
