@@ -1,6 +1,6 @@
 # Intelligence Explosion
 
-Is discovery accelerating? An interactive, source-linked collection of AI-assisted science milestones, with a growth graph, a tree view and a reading view. Built for Tom Harwood.
+Is discovery accelerating? An interactive, source-linked collection of AI-assisted science milestones, with a growth graph, a discovery network and a reading view. Built for Tom Harwood.
 
 ## Run
 
@@ -15,13 +15,14 @@ No build or dependencies required. Serve `dist/` with any static server, for exa
 - Source-linked examples of compounding tools and research
 - Eight 2026 additions, including BootLoops and OpenAI mathematics release; batch releases count once.
 
-- SVG tree with keyboard-operable leaves ordered by date along each branch (newest at the tip); titles appear on hover, focus or selection
+- Neural-style SVG discovery network with stable field clusters, documented dependency arrows, animated lineage highlighting, keyboard-operable nodes, zoom and a Connected only filter
+- Play/Pause and timeline controls directly above the visualization; supporting research cards below the explorer
 - Search, five scientific field filters, and a 2020–2026 timeline with playback
 - Reading view, five-stop guided tour, and random discovery
 - 69 curated entries with primary sources, evidence status, AI contribution and limitations
 - Responsive layout and reduced-motion support
 
-A collapsible “How to read this” note under the explorer explains what the curve can and cannot show. Dates reflect the linked publication or announcement. Branches classify topics; they do not assert causal relationships. Collection growth is not a scientific acceleration metric. This is a starter collection, not comprehensive current news coverage.
+A collapsible “How to read this” note under the explorer explains what the curve can and cannot show. Dates reflect the linked publication or announcement. Network clusters classify topics; proximity does not assert a relationship. Only documented buildsOn links create edges. Collection growth is not a scientific acceleration metric. This is a starter collection, not comprehensive current news coverage.
 
 ## Add discoveries
 
@@ -41,6 +42,6 @@ Automatic ingestion is not enabled. Next: a scheduled Python collector for selec
 
 ## Verification and deep time
 
-Every DISCOVERIES entry has verification: verified, provisional, or claimed, and an optional short verifiedNote string. Upgrade claimed→provisional→verified only when a cited independent check exists; put the citation in verifiedNote. Initial states are editorial classifications; empty notes do not supply independent verification. Reading badges and graph/tree dots share these states; the verification filter combines with field, search, year, and Last 30 days filters.
+Every DISCOVERIES entry has verification: verified, provisional, or claimed, and an optional short verifiedNote string. Upgrade claimed→provisional→verified only when a cited independent check exists; put the citation in verifiedNote. Initial states are editorial classifications; empty notes do not supply independent verification. Reading badges and graph/network dots share these states; the verification filter combines with field, search, year, and Last 30 days filters.
 
 ERAS is a separate, sorted list of hand-picked context markers with id, year, title, line, and Wikipedia url. It never enters milestone search, hero statistics, cumulative totals, or recent filters. Deep time plots log10(years before CUTOFF + 1), reversed with today at right. Time dive uses the slider, wheel/pinch, or +/− keys while the graph is focused; reduced motion jumps immediately. The historical gap panel uses consecutive ERAS years and the median of consecutive milestone date gaps in the same last-90-day window as the hero (including same-day zero gaps). These differently selected lists cannot establish acceleration.

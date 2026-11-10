@@ -49,3 +49,17 @@
 footer { flex-wrap: wrap; align-items: center; gap: 16px; }
 footer nav { display: flex; flex-wrap: wrap; gap: 12px 22px; }
 footer nav a:hover { color: var(--gold); }
+
+/* Controls travel with the visualization, above the canvas and before its detail panel. */
+.visual .timeline{border-top:0;border-bottom:1px solid var(--line);padding:14px 22px;gap:18px;background:#102125}
+.visual .timeline #play{width:94px;flex-shrink:0;background:var(--gold);color:#091518;border:0;font-weight:600}
+.visual .timeline #play:hover{background:#ead1a0}.visual .timeline .years{font-size:8px}.visual .timeline input{margin:5px 0}
+.canvas-note{position:relative;top:auto;left:auto;padding:18px 24px 0}.canvas-note small{letter-spacing:1.2px}
+#graph-wrap{padding-top:0}.explorer{align-items:start}aside{position:sticky;top:0;max-height:900px;overflow:auto}
+.network-heading{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:24px 26px 0}.network-heading .eyebrow{display:block;font-size:8px;margin-bottom:9px}.network-heading h2{font:34px/1.1 'Libre Caslon Display',Georgia,serif;margin:0}.network-heading button{font-size:10px;white-space:nowrap}.network-heading button[aria-pressed=true]{background:var(--gold);color:var(--bg)}
+.network-legend{padding:0 26px;color:var(--muted);font-size:10px;display:flex;align-items:center;gap:10px}.connection-key{width:24px;height:1px;background:var(--gold)}#network-count{margin-left:auto}
+#tree-wrap{height:auto;min-height:600px;background:radial-gradient(ellipse at 50% 50%,#152e37a0,transparent 70%);padding-bottom:50px}#tree{height:auto;min-height:430px;overflow:hidden}.neural-edge{fill:none;stroke:var(--gold);stroke-width:1.4;opacity:.28;transition:opacity .25s,stroke-width .25s}.neural-edge.lit{opacity:.95;stroke-width:2;stroke-dasharray:8 5;animation:neural-signal 2s linear infinite}.neuron-glow{opacity:.2;transition:opacity .25s}.neuron.connected .neuron-glow{opacity:.6}.neuron.chosen .halo{opacity:.22;stroke:var(--gold);stroke-width:1;fill:none}.neuron:hover .neuron-glow,.neuron:focus .neuron-glow{opacity:.85}.neuron .core{transition:stroke-width .25s}.neuron:focus{outline:none}.neuron:focus .halo{opacity:.8;stroke:white;stroke-width:2;fill:none}.node-hit{pointer-events:all}#tree-wrap .zoom{bottom:18px}#tree-wrap .root-label{bottom:26px;padding-left:150px;font-size:7px;pointer-events:none}#tree-tip text{font-size:12px}
+.measured{margin:40px 0 12px}.measured-cards{grid-template-columns:repeat(3,minmax(0,1fr))}.capability-signal{grid-column:auto}.measured h2{font-size:36px}
+@keyframes neural-signal{to{stroke-dashoffset:-26}}
+@media(prefers-reduced-motion:reduce){.neural-edge.lit{animation:none}.neural-edge,.neuron-glow{transition:none}}
+@media(max-width:760px){.visual .timeline{padding:12px;gap:10px;flex-wrap:wrap}.visual .timeline #play{width:83px}.visual .timeline .time-track{min-width:160px}.visual .timeline #surprise{margin-left:auto;padding:5px 0;border:0}.canvas-note{padding:16px 14px 0}aside{position:static;max-height:none}.network-heading{padding:22px 14px 0;align-items:start}.network-heading h2{font-size:27px}.network-heading button{font-size:9px;padding:8px}.network-legend{padding:0 14px;flex-wrap:wrap;line-height:1.5}#network-count{margin-left:0}#tree-wrap{min-height:0}#tree{min-height:340px}#tree-wrap .root-label{font-size:6px;text-align:right;padding:0 12px 0 145px}.measured-cards{grid-template-columns:1fr}.measured{margin-top:28px}.branch-label{font-size:11px}}

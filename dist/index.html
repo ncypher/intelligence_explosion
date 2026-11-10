@@ -41,7 +41,7 @@
 </section>
 <section class="workspace" aria-label="Discovery explorer">
   <div class="toolbar">
-    <div class="tabs"><button class="active" id="graph-tab" aria-pressed="true">↗ &nbsp; Growth graph</button><button id="tree-tab" aria-pressed="false">⌘ &nbsp; Tree view</button><button id="list-tab" aria-pressed="false">☷ &nbsp; Reading view</button></div>
+    <div class="tabs"><button class="active" id="graph-tab" aria-pressed="true">↗ &nbsp; Growth graph</button><button id="tree-tab" aria-pressed="false">✧ &nbsp; Discovery network</button><button id="list-tab" aria-pressed="false">☷ &nbsp; Reading view</button></div>
     <label class="search"><span>⌕</span><input id="search" type="search" placeholder="Find a discovery…" aria-label="Search discoveries"></label>
   </div>
   <div class="filters" id="filters"></div>
@@ -49,6 +49,15 @@
   <div class="rangebar"><button id="recent" aria-pressed="false">Last 30 days</button><span id="coverage"></span></div>
   <div class="explorer">
     <div class="visual">
+  <div class="timeline">
+    <button id="play" aria-label="Play timeline">▶ Play</button>
+    <div class="time-track">
+      <div class="time-label"><span>WATCH THE COLLECTION GROW</span><strong id="year-label">2026</strong></div>
+      <input id="year" aria-label="Show discoveries through year" type="range" min="2020" max="2026" value="2026">
+      <div class="years"><span>2020</span><span>2021</span><span>2022</span><span>2023</span><span>2024</span><span>2025</span><span>2026</span></div>
+    </div>
+    <button id="surprise">Surprise me ↗</button>
+  </div>
       <div class="canvas-note"><span id="shown"></span><small id="hint">SELECT A POINT TO TRACE WHAT IT BUILDS ON</small></div>
       <div id="graph-wrap">
         <label class="axis-control">Time axis <select id="axis"><option value="linear">2020–2026 (linear)</option><option value="log">Deep time (log)</option></select></label>
@@ -56,6 +65,32 @@
         <svg id="graph" tabindex="0" viewBox="0 0 1000 560" role="group" aria-label="Cumulative curated milestones over calendar time"></svg>
         <p class="graph-caption">Linear axes · one point per entry · gold arcs show documented “builds on” links. <a href="#howto">How to read this ↓</a></p>
         <section id="gaps" hidden aria-label="Historical intervals"></section>
+        <details><summary>See the plotted values</summary><div id="graph-table"></div></details>
+      </div>
+      <div id="tree-wrap" hidden>
+        <div class="network-heading"><div><span class="eyebrow">IDEAS BECOME INPUTS</span><h2>A constellation of discovery.</h2></div><button id="linked-only" aria-pressed="false">Connected only</button></div>
+        <p class="network-legend"><span class="connection-key"></span> Documented dependency → <span id="network-count"></span></p>
+        <svg id="tree" viewBox="0 0 1000 650" role="group" aria-label="Discovery network with documented dependencies between scientific milestones"></svg>
+        <div class="zoom"><button id="minus" aria-label="Zoom out">−</button><button id="reset" aria-label="Reset zoom">Reset</button><button id="plus" aria-label="Zoom in">+</button></div>
+        <div class="root-label">COLOR = FIELD <span>·</span> PROXIMITY IS NOT A DEPENDENCY</div>
+      </div>
+      <div id="list" hidden></div>
+      <div id="empty" hidden>No discoveries match. Try another search, field, or year.</div>
+    </div>
+    <aside id="detail" aria-live="polite"></aside>
+  </div>
+
+</section>
+<details class="howto" id="howto">
+  <summary><span>HOW TO READ THIS</span> What the curve can and cannot tell you</summary>
+  <div class="howto-grid">
+    <p><span>01 / A MAP, NOT A MEASUREMENT</span> Every point is one curated entry, and a batch release counts once. The curve shows how this collection grows. It is not a measured rate of scientific progress. A selective collection cannot establish a scientific “knee” or an exponential growth rate.</p>
+    <p><span>02 / WHY RECENT MONTHS LOOK DENSER</span> Recent announcements are easier to find and still fresh, and older periods have been backfilled by hand. The hero comparison counts entries in two equal 90-day windows ending at the editorial cutoff. More entries can mean more work, more announcements, more attention, or our own selection. It does not prove faster science.</p>
+    <p><span>03 / WHAT “BUILDS ON” MEANS</span> A link appears only where the source documents the dependency, for example a model trained on, or using, an earlier system’s outputs. Missing links do not mean independence. Nodes cluster by field; proximity is not evidence of a relationship. Network arrows show only documented dependencies.</p>
+    <p><span>05 / DEEP TIME AND SELECTION</span> Deep time uses a reversed logarithmic scale of years before the editorial cutoff; recent years occupy more space. Time dive narrows the window from 1440 to 2020. Historical markers are hand-picked context, not milestones. Comparing their gaps with recent entries illustrates selection bias: neither list is complete or consistently sampled, and shorter gaps do not establish acceleration.</p>
+    <p><span>04 / FOLLOW THE EVIDENCE</span> Each entry links to a primary source and states its limits. Prediction, laboratory evidence, benchmarks and mathematical verification are different kinds of progress. The collection is curated by hand. Automatic updates are not enabled.</p>
+  </div>
+</details>
         <section class="measured" aria-labelledby="measured-title">
           <h2 id="measured-title">Measured elsewhere</h2>
           <p class="measured-framing">This collection is curated. These trends are measured. Read them together.</p>
@@ -92,38 +127,7 @@
             </article>
           </div>
         </section>
-        <details><summary>See the plotted values</summary><div id="graph-table"></div></details>
-      </div>
-      <div id="tree-wrap" hidden>
-        <svg id="tree" viewBox="0 0 1000 650" role="group" aria-label="Interactive tree of scientific milestones, ordered by date along each branch"></svg>
-        <div class="zoom"><button id="minus" aria-label="Zoom out">−</button><button id="reset" aria-label="Reset zoom">Reset</button><button id="plus" aria-label="Zoom in">+</button></div>
-        <div class="root-label">HUMAN CURIOSITY <span>×</span> MACHINE INTELLIGENCE</div>
-      </div>
-      <div id="list" hidden></div>
-      <div id="empty" hidden>No discoveries match. Try another search, field, or year.</div>
-    </div>
-    <aside id="detail" aria-live="polite"></aside>
-  </div>
-  <div class="timeline">
-    <button id="play" aria-label="Play timeline">▶</button>
-    <div class="time-track">
-      <div class="time-label"><span>WATCH THE COLLECTION GROW</span><strong id="year-label">2026</strong></div>
-      <input id="year" aria-label="Show discoveries through year" type="range" min="2020" max="2026" value="2026">
-      <div class="years"><span>2020</span><span>2021</span><span>2022</span><span>2023</span><span>2024</span><span>2025</span><span>2026</span></div>
-    </div>
-    <button id="surprise">Surprise me ↗</button>
-  </div>
-</section>
-<details class="howto" id="howto">
-  <summary><span>HOW TO READ THIS</span> What the curve can and cannot tell you</summary>
-  <div class="howto-grid">
-    <p><span>01 / A MAP, NOT A MEASUREMENT</span> Every point is one curated entry, and a batch release counts once. The curve shows how this collection grows. It is not a measured rate of scientific progress. A selective collection cannot establish a scientific “knee” or an exponential growth rate.</p>
-    <p><span>02 / WHY RECENT MONTHS LOOK DENSER</span> Recent announcements are easier to find and still fresh, and older periods have been backfilled by hand. The hero comparison counts entries in two equal 90-day windows ending at the editorial cutoff. More entries can mean more work, more announcements, more attention, or our own selection. It does not prove faster science.</p>
-    <p><span>03 / WHAT “BUILDS ON” MEANS</span> A link appears only where the source documents the dependency, for example a model trained on, or using, an earlier system’s outputs. Missing links do not mean independence. Branches in the tree group fields. They do not claim causation.</p>
-    <p><span>05 / DEEP TIME AND SELECTION</span> Deep time uses a reversed logarithmic scale of years before the editorial cutoff; recent years occupy more space. Time dive narrows the window from 1440 to 2020. Historical markers are hand-picked context, not milestones. Comparing their gaps with recent entries illustrates selection bias: neither list is complete or consistently sampled, and shorter gaps do not establish acceleration.</p>
-    <p><span>04 / FOLLOW THE EVIDENCE</span> Each entry links to a primary source and states its limits. Prediction, laboratory evidence, benchmarks and mathematical verification are different kinds of progress. The collection is curated by hand. Automatic updates are not enabled.</p>
-  </div>
-</details>
+
 <section class="stacking">
   <p class="eyebrow">HOW PROGRESS COMPOUNDS</p>
   <h2>Each advance leaves tools behind.</h2>
@@ -135,7 +139,7 @@
 </section>
 </main>
 <footer><span>INTELLIGENCE EXPLOSION <i>·</i> An unfinished story.</span><nav aria-label="Tom Harwood links"><a href="https://github.com/ncypher" target="_blank" rel="noopener noreferrer">GitHub &#8599;</a><a href="https://thomas-harwood.com/" target="_blank" rel="noopener noreferrer">thomas-harwood.com &#8599;</a><a href="https://github.com/ncypher/intelligence_explosion" target="_blank" rel="noopener">Explore the project ↗</a></nav></footer>
-<dialog id="info"><button id="close" aria-label="Close about dialog">×</button><p class="eyebrow">ABOUT THIS COLLECTION</p><h2>Wonder, with receipts.</h2><p>Intelligence Explosion follows selected milestones in AI-assisted science. Dates mark the linked publication or announcement, not necessarily the first experiment.</p><p>Tree branches are subject categories, not claims of causation. “Builds on” links appear only where a source documents the dependency. Points and leaves have equal weight. Their size does not score importance. Every entry comes with its source description and limits.</p><p>The collection covers <span id="about-span">2020–2026</span> and is not comprehensive. New findings require editorial review before publication. Last editorial review: <span id="review-date"></span>.</p><p>Built for Tom Harwood’s Intelligence Explosion project.</p></dialog>
+<dialog id="info"><button id="close" aria-label="Close about dialog">×</button><p class="eyebrow">ABOUT THIS COLLECTION</p><h2>Wonder, with receipts.</h2><p>Intelligence Explosion follows selected milestones in AI-assisted science. Dates mark the linked publication or announcement, not necessarily the first experiment.</p><p>Network clusters are subject categories, not claims of causation. “Builds on” links appear only where a source documents the dependency. Points and network nodes have equal weight. Their size does not score importance. Every entry comes with its source description and limits.</p><p>The collection covers <span id="about-span">2020–2026</span> and is not comprehensive. New findings require editorial review before publication. Last editorial review: <span id="review-date"></span>.</p><p>Built for Tom Harwood’s Intelligence Explosion project.</p></dialog>
 <script src="data.js"></script><script src="graph.js"></script><script src="app.js"></script>
 </body>
 </html>

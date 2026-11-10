@@ -32,44 +32,60 @@ const descendants = id => closure(id, n => ledTo.get(n) || []);
   $('span').textContent = $('about-span').textContent = `${firstYear}–${lastYear}`;
 })();
 
-['All fields', ...fields].forEach(f => { const b = document.createElement('button'); b.innerHTML = (colors[f] ? `<span class="dot" style="--color:${colors[f]}"></span>` : '') + esc(f); b.onclick = () => { field = f; render() }; b.dataset.field = f; $('filters').append(b) });
+['All fields', ...fields].forEach(f => { const b = document.createElement('button'); b.innerHTML = (colors[f] ? `<span class="dot" style="--color:${colors[f]}"></span>` : '') + esc(f); b.onclick = () => { stop(); field = f; render() }; b.dataset.field = f; $('filters').append(b) });
 
-// Tree: one curved branch per field; leaves sit along it in date order, newest at the tip.
-const branches = {
-  'Biology': { p: [[495, 440], [430, 360], [230, 330], [115, 150]], label: [115, 122] },
-  'Mathematics': { p: [[505, 430], [575, 350], [775, 320], [885, 145]], label: [885, 117] },
-  'Materials': { p: [[492, 478], [400, 455], [230, 470], [105, 420]], label: [105, 466] },
-  'Earth & climate': { p: [[508, 478], [600, 455], [770, 470], [895, 425]], label: [895, 471] },
-  'Physics': { p: [[500, 415], [488, 330], [515, 230], [500, 95]], label: [500, 70] }
-};
-const bez = (p, t) => { const u = 1 - t; return [0, 1].map(k => u * u * u * p[0][k] + 3 * u * u * t * p[1][k] + 3 * u * t * t * p[2][k] + t * t * t * p[3][k]) };
-const bezD = (p, t) => { const u = 1 - t; return [0, 1].map(k => 3 * u * u * (p[1][k] - p[0][k]) + 6 * u * t * (p[2][k] - p[1][k]) + 3 * t * t * (p[3][k] - p[2][k])) };
-
+// Stable, deterministic layout: field proximity is visual grouping, never a dependency.
+let linkedOnly = false;
+const networkCenters = [[270,245],[730,245],[235,470],[765,470],[500,130]];
+const networkPositions = new Map();
+fields.forEach((f, fi) => {
+  const group = data.filter(d => d.field === f), [cx,cy] = networkCenters[fi];
+  group.forEach((d,i) => {
+    const angle = i * 2.39996323 + fi, radius = 26 * Math.sqrt(i + 1);
+    networkPositions.set(d.id, {x:cx+Math.cos(angle)*radius,y:cy+Math.sin(angle)*radius, cx, cy});
+  });
+});
+// Relax connected nodes toward one another while preventing overlap.
+for(let step=0;step<160;step++) {
+  const force = new Map(data.map(d=>[d.id,{x:0,y:0}]));
+  for(let i=0;i<data.length;i++) for(let j=i+1;j<data.length;j++) {
+    const a=networkPositions.get(data[i].id), b=networkPositions.get(data[j].id);
+    const dx=a.x-b.x,dy=a.y-b.y,dist=Math.max(1,Math.hypot(dx,dy));
+    if(dist<70){const k=(70-dist)*.035; force.get(data[i].id).x+=dx/dist*k;force.get(data[i].id).y+=dy/dist*k;force.get(data[j].id).x-=dx/dist*k;force.get(data[j].id).y-=dy/dist*k;}
+  }
+  for(const d of data) for(const id of d.buildsOn) {
+    const a=networkPositions.get(d.id),b=networkPositions.get(id);if(!b)continue;
+    const dx=b.x-a.x,dy=b.y-a.y,dist=Math.max(1,Math.hypot(dx,dy)),k=(dist-70)*.008;
+    force.get(d.id).x+=dx/dist*k;force.get(d.id).y+=dy/dist*k;force.get(id).x-=dx/dist*k;force.get(id).y-=dy/dist*k;
+  }
+  for(const d of data){const p=networkPositions.get(d.id),f=force.get(d.id);p.x=Math.max(55,Math.min(945,p.x+f.x+(p.cx-p.x)*.003));p.y=Math.max(90,Math.min(565,p.y+f.y+(p.cy-p.y)*.003));}
+}
 function draw(items) {
-  let out = '<defs><radialGradient id="glow"><stop stop-color="#d5b67c" stop-opacity=".19"/><stop offset="1" stop-color="#d5b67c" stop-opacity="0"/></radialGradient></defs><circle cx="500" cy="520" r="180" fill="url(#glow)"/><g id="branches">';
-  out += '<path class="trunk" stroke-width="4" opacity=".6" d="M500 600 C485 560 515 520 500 470 C490 440 502 425 500 410"/>';
-  for (let r = 0; r < 9; r++) out += `<path class="trunk" stroke-width=".8" opacity=".28" d="M500 582 Q${440 + r * 15} 610 ${330 + r * 43} ${615 + (r % 3) * 8}"/>`;
-  let leaves = '';
-  fields.forEach(f => {
-    const { p, label } = branches[f], all = data.filter(d => d.field === f), n = all.length;
-    out += `<path class="trunk" opacity=".42" stroke-width="2" d="M${p[0]} C${p[1]} ${p[2]} ${p[3]}"/><text class="branch-label" fill="${colors[f]}" x="${label[0]}" y="${label[1]}" text-anchor="middle">${esc(f.toUpperCase())}</text>`;
-    all.forEach((d, j) => {
-      const t = .96 - Math.min(.76 / Math.max(n - 1, 1), .13) * (n - 1 - j), [bx, by] = bez(p, t), [dx, dy] = bezD(p, t), len = Math.hypot(dx, dy) || 1;
-      const side = j % 2 ? 1 : -1, off = 17, nx = bx - dy / len * off * side, ny = by + dx / len * off * side, shown = items.includes(d);
-      out += `<path class="twig" stroke="${colors[f]}" opacity="${shown ? '.45' : '.07'}" d="M${bx} ${by} L${nx} ${ny}"/>`;
-      if (!shown) return;
-      leaves += `<g class="leaf ${selected === d.id ? 'chosen' : ''}" role="button" tabindex="0" aria-label="${esc(d.title)}, ${d.date}, ${verificationLabel(d)}" data-id="${d.id}" data-x="${nx}" data-y="${ny}"><circle class="halo" cx="${nx}" cy="${ny}" r="12" fill="${colors[f]}"/>${evidenceDot(d,nx,ny,5.5,'core')}</g>`;
-    });
-  });
-  out += `<g id="leaves">${leaves}</g><g id="tree-tip" aria-hidden="true"></g></g>`;
-  $('tree').innerHTML = out;
+  const shown=items.filter(d=>!linkedOnly || d.buildsOn.length || ledTo.get(d.id).length), ids=new Set(shown.map(d=>d.id));
+  let out='<defs><filter id="node-glow"><feGaussianBlur stdDeviation="5"/></filter><marker id="neural-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10" fill="#d5b67c"/></marker></defs><g id="branches">';
+  fields.forEach((f,i)=>{const [x,y]=networkCenters[i];out+=`<ellipse cx="${x}" cy="${y}" rx="190" ry="145" fill="${colors[f]}" opacity=".025"/><text class="branch-label" fill="${colors[f]}" x="${x}" y="${i===4?50:i<2?75:610}" text-anchor="middle">${esc(f.toUpperCase())}</text>`});
+  let edges=0;
+  for(const d of shown)for(const parent of d.buildsOn){if(!ids.has(parent))continue;edges++;const a=networkPositions.get(parent),b=networkPositions.get(d.id),dx=b.x-a.x,dy=b.y-a.y,dist=Math.hypot(dx,dy)||1;
+    const path=`M${a.x+dx/dist*11} ${a.y+dy/dist*11} Q${(a.x+b.x)/2-dy*.14} ${(a.y+b.y)/2+dx*.14} ${b.x-dx/dist*13} ${b.y-dy/dist*13}`;
+    out+=`<path class="neural-edge" data-from="${parent}" data-to="${d.id}" d="${path}" marker-end="url(#neural-arrow)"/>`;
+  }
+  for(const d of shown){const {x,y}=networkPositions.get(d.id);out+=`<g class="leaf neuron" role="button" tabindex="0" aria-label="${esc(d.title)}, ${d.date}, ${verificationLabel(d)}" data-id="${d.id}" data-x="${x}" data-y="${y}"><title>${esc(d.title)} · ${d.date}</title><circle class="neuron-glow" cx="${x}" cy="${y}" r="19" fill="${colors[d.field]}" filter="url(#node-glow)"/><circle class="halo" cx="${x}" cy="${y}" r="20" fill="${colors[d.field]}"/><circle class="node-hit" cx="${x}" cy="${y}" r="22" fill="transparent"/>${evidenceDot(d,x,y,7,'core')}</g>`;}
+  out+='<g id="tree-tip" aria-hidden="true"></g></g>'; $('tree').innerHTML=out;
+  $('network-count').textContent=`${shown.length} nodes · ${edges} links in view`;
+  if(!shown.length) $('network-count').textContent='No connected nodes match these filters';
   applyZoom();
-  document.querySelectorAll('.leaf').forEach(el => {
-    el.onclick = () => choose(el.dataset.id);
-    el.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); choose(el.dataset.id) } };
-    el.onmouseenter = el.onfocus = () => treeTip(el.dataset.id);
-    el.onmouseleave = el.onblur = () => treeTip(selected);
+  document.querySelectorAll('.leaf').forEach(el=>{
+    el.onclick=()=>choose(el.dataset.id);
+    el.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();choose(el.dataset.id)}};
+    el.onmouseenter=el.onfocus=()=>{treeTip(el.dataset.id);highlightNetwork(el.dataset.id)};
+    el.onmouseleave=el.onblur=()=>{treeTip(selected);highlightNetwork(selected)};
   });
+  highlightNetwork(selected);
+}
+function highlightNetwork(id){
+  const focus=byId.has(id)?new Set([id,...ancestors(id),...descendants(id)]):new Set();
+  document.querySelectorAll('.neuron').forEach(el=>{el.classList.toggle('chosen',el.dataset.id===id);el.classList.toggle('connected',focus.has(el.dataset.id));});
+  document.querySelectorAll('.neural-edge').forEach(el=>el.classList.toggle('lit',focus.has(el.dataset.from)&&focus.has(el.dataset.to)));
 }
 
 // One label layer for the tree: shows the hovered/focused leaf, else the selected one. Avoids collisions.
@@ -92,11 +108,12 @@ function choose(id) {
   const lineage = up.length || down.length
     ? (up.length ? `<h3>BUILDS ON</h3><div class="chips">${chips(up)}</div>` : '') + (down.length ? `<h3>LED TO</h3><div class="chips">${chips(down)}</div>` : '')
     : '<h3>LINEAGE</h3><p class="quiet">No documented dependency in this collection yet.</p>';
-  $('detail').innerHTML = `<div class="meta"><span class="dot" style="--color:${colors[d.field]}"></span>${esc(d.field.toUpperCase())} &nbsp; / &nbsp; ${d.date.slice(0, 4)}</div><h2>${esc(d.title)}</h2><span class="badge">${esc(d.status)}</span> ${verificationBadge(d)}${d.verifiedNote ? `<p class="quiet">Independent check: ${esc(d.verifiedNote)}</p>` : ''}<p>${esc(d.summary)}</p><h3>WHAT DID AI CONTRIBUTE?</h3><p>${esc(d.aiRole)}</p><h3>WHY IT MATTERS</h3><p>${esc(d.impact)}</p><h3>THE LIMITS</h3><p>${esc(d.limit)}</p>${lineage}<a class="source" target="_blank" rel="noopener noreferrer" href="${esc(d.url)}">Read the primary source ↗<small>${esc(d.source)} · ${d.date}</small></a><div class="detail-count">${tourIndex >= 0 ? `GUIDED JOURNEY · ${tourIndex + 1} / 5 &nbsp; <button id="next">${tourIndex === 4 ? 'Finish' : 'Next →'}</button>` : 'A LEAF IN THE STORY. NOT THE WHOLE STORY.'}</div>`;
+  $('detail').innerHTML = `<div class="meta"><span class="dot" style="--color:${colors[d.field]}"></span>${esc(d.field.toUpperCase())} &nbsp; / &nbsp; ${d.date.slice(0, 4)}</div><h2>${esc(d.title)}</h2><span class="badge">${esc(d.status)}</span> ${verificationBadge(d)}${d.verifiedNote ? `<p class="quiet">Evidence note: ${esc(d.verifiedNote)}</p>` : ''}<p>${esc(d.summary)}</p><h3>WHAT DID AI CONTRIBUTE?</h3><p>${esc(d.aiRole)}</p><h3>WHY IT MATTERS</h3><p>${esc(d.impact)}</p><h3>THE LIMITS</h3><p>${esc(d.limit)}</p>${lineage}<a class="source" target="_blank" rel="noopener noreferrer" href="${esc(d.url)}">Read the primary source ↗<small>${esc(d.source)} · ${d.date}</small></a><div class="detail-count">${tourIndex >= 0 ? `GUIDED JOURNEY · ${tourIndex + 1} / 5 &nbsp; <button id="next">${tourIndex === 4 ? 'Finish' : 'Next →'}</button>` : 'ONE DISCOVERY. MANY POSSIBLE NEXT STEPS.'}</div>`;
   if ($('next')) $('next').onclick = nextTour;
   document.querySelectorAll('[data-chip]').forEach(b => b.onclick = () => { tourIndex = -1; choose(b.dataset.chip) });
   document.querySelectorAll('.leaf').forEach(e => e.classList.toggle('chosen', e.dataset.id === id));
   treeTip(id);
+  highlightNetwork(id);
   drawLineage(id);
 }
 
@@ -108,7 +125,7 @@ function render() {
   $('year-label').textContent = year;
   $('coverage').textContent = recentOnly ? `${fmtDate(recentStart).replace(/, \d{4}$/, '')}–${fmtDate(CUTOFF)} · filtered collection` : `Through ${fmtDate(CUTOFF)} · publication dates`;
   $('shown').textContent = `${items.length} of ${data.length} milestones · through ${year}`;
-  $('hint').textContent = view === 'tree' ? 'HOVER OR FOCUS A LEAF TO READ ITS TITLE' : 'SELECT A POINT TO TRACE WHAT IT BUILDS ON';
+  $('hint').textContent = view === 'tree' ? 'SELECT A NODE TO ILLUMINATE ITS LINEAGE' : 'SELECT A POINT TO TRACE WHAT IT BUILDS ON';
   $('graph-wrap').hidden = view !== 'graph' || !items.length;
   drawGraph(items);
   $('tree-wrap').hidden = view !== 'tree' || !items.length;
@@ -127,9 +144,9 @@ function render() {
 const PLAY_MS = 9000, playStart = Date.parse(`${firstYear}-01-01`);
 function stop() {
   clearInterval(timer); cancelAnimationFrame(raf); timer = raf = null;
-  $('play').textContent = '▶'; $('play').setAttribute('aria-label', 'Play timeline');
+  $('play').textContent = '▶ Play'; $('play').setAttribute('aria-label', 'Play timeline');
 }
-function playing() { $('play').textContent = 'Ⅱ'; $('play').setAttribute('aria-label', 'Pause timeline') }
+function playing() { $('play').textContent = 'Ⅱ Pause'; $('play').setAttribute('aria-label', 'Pause timeline') }
 function playGraph(from) {
   const t0 = performance.now() - (from - playStart) / (cutoffMs - playStart) * PLAY_MS;
   const frame = now => {
@@ -160,8 +177,9 @@ $('play').onclick = () => {
 };
 
 $('year').oninput = e => { stop(); year = +e.target.value; tourIndex = -1; render() };
-$('search').oninput = e => { query = e.target.value.trim().toLowerCase(); tourIndex = -1; render() };
+$('search').oninput = e => { stop(); query = e.target.value.trim().toLowerCase(); tourIndex = -1; render() };
 for (const v of ['graph', 'tree', 'list']) $(v + '-tab').onclick = () => { stop(); view = v; for (const t of ['graph', 'tree', 'list']) { $(t + '-tab').classList.toggle('active', v === t); $(t + '-tab').setAttribute('aria-pressed', v === t) } render() };
+$('linked-only').onclick = () => { linkedOnly = !linkedOnly; $('linked-only').setAttribute('aria-pressed', linkedOnly); draw(visible()); };
 $('surprise').onclick = () => { const a = visible(); if (a.length) { tourIndex = -1; choose(a[Math.floor(Math.random() * a.length)].id) } };
 function applyZoom() { const g = $('branches'); if (g) g.setAttribute('transform', `translate(${500 * (1 - zoom)},${325 * (1 - zoom)}) scale(${zoom})`) }
 $('plus').onclick = () => { zoom = Math.min(1.8, zoom + .2); applyZoom() };
