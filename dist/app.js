@@ -108,8 +108,9 @@ function choose(id) {
   const lineage = up.length || down.length
     ? (up.length ? `<h3>BUILDS ON</h3><div class="chips">${chips(up)}</div>` : '') + (down.length ? `<h3>LED TO</h3><div class="chips">${chips(down)}</div>` : '')
     : '<h3>LINEAGE</h3><p class="quiet">No documented dependency in this collection yet.</p>';
-  $('detail').innerHTML = `<div class="meta"><span class="dot" style="--color:${colors[d.field]}"></span>${esc(d.field.toUpperCase())} &nbsp; / &nbsp; ${d.date.slice(0, 4)}</div><h2>${esc(d.title)}</h2>${mediaPanel(d)}<span class="badge">${esc(d.status)}</span> ${verificationBadge(d)}${d.verifiedNote ? `<p class="quiet">Evidence note: ${esc(d.verifiedNote)}</p>` : ''}<p>${esc(d.summary)}</p><h3>WHAT DID AI CONTRIBUTE?</h3><p>${esc(d.aiRole)}</p><h3>WHY IT MATTERS</h3><p>${esc(d.impact)}</p><h3>THE LIMITS</h3><p>${esc(d.limit)}</p>${lineage}<a class="source" target="_blank" rel="noopener noreferrer" href="${esc(d.url)}">Read the primary source ↗<small>${esc(d.source)} · ${d.date}</small></a><div class="detail-count">${tourIndex >= 0 ? `GUIDED JOURNEY · ${tourIndex + 1} / 5 &nbsp; <button id="next">${tourIndex === 4 ? 'Finish' : 'Next →'}</button>` : 'ONE DISCOVERY. MANY POSSIBLE NEXT STEPS.'}</div>`;
+  $('detail').innerHTML = `<div class="meta"><span class="dot" style="--color:${colors[d.field]}"></span>${esc(d.field.toUpperCase())} &nbsp; / &nbsp; ${d.date.slice(0, 4)}</div><h2>${esc(d.title)}</h2>${researchButton(d)}${mediaPanel(d)}<span class="badge">${esc(d.status)}</span> ${verificationBadge(d)}${d.verifiedNote ? `<p class="quiet">Evidence note: ${esc(d.verifiedNote)}</p>` : ''}<p>${esc(d.summary)}</p><h3>WHAT DID AI CONTRIBUTE?</h3><p>${esc(d.aiRole)}</p><h3>WHY IT MATTERS</h3><p>${esc(d.impact)}</p><h3>THE LIMITS</h3><p>${esc(d.limit)}</p>${lineage}<a class="source" target="_blank" rel="noopener noreferrer" href="${esc(d.url)}">Read the primary source ↗<small>${esc(d.source)} · ${d.date}</small></a><div class="detail-count">${tourIndex >= 0 ? `GUIDED JOURNEY · ${tourIndex + 1} / 5 &nbsp; <button id="next">${tourIndex === 4 ? 'Finish' : 'Next →'}</button>` : 'ONE DISCOVERY. MANY POSSIBLE NEXT STEPS.'}</div>`;
   bindMedia($('detail'));
+  bindResearch($('detail'));
   if ($('next')) $('next').onclick = nextTour;
   document.querySelectorAll('[data-chip]').forEach(b => b.onclick = () => { tourIndex = -1; choose(b.dataset.chip) });
   document.querySelectorAll('.leaf').forEach(e => e.classList.toggle('chosen', e.dataset.id === id));
@@ -134,7 +135,7 @@ function render() {
   $('list').hidden = view !== 'list' || !items.length;
   $('empty').hidden = !!items.length;
   draw(items);
-  $('list').innerHTML = items.slice().reverse().map(d => `<button class="row" data-entry="${d.id}"><small><span class="dot" style="--color:${colors[d.field]}"></span>${esc(d.field)} · ${d.date}</small>${verificationBadge(d)}${DISCOVERY_MEDIA[d.id]?'<span class="media-pill">▶ Video</span>':''}<strong>${esc(d.title)}</strong><p>${esc(d.summary)}</p></button>`).join('');
+  $('list').innerHTML = items.slice().reverse().map(d => `<button class="row" data-entry="${d.id}"><small><span class="dot" style="--color:${colors[d.field]}"></span>${esc(d.field)} · ${d.date}</small>${verificationBadge(d)}<span class="resource-pill">${storyResources(d).length} links</span>${DISCOVERY_MEDIA[d.id]?'<span class="media-pill">▶ Video</span>':''}<strong>${esc(d.title)}</strong><p>${esc(d.summary)}</p></button>`).join('');
   document.querySelectorAll('[data-entry]').forEach(b => b.onclick = () => choose(b.dataset.entry));
   if (items.find(d => d.id === selected)) choose(selected);
   else if (items.length) choose(items[items.length - 1].id);
@@ -202,6 +203,7 @@ $('close').onclick = () => $('info').close();
 $('info').onclick = e => { if (e.target === $('info')) $('info').close() };
 render();
 initMedia();
+initResearch();
 
 // Touch pinch zoom uses the same bounded window as the keyboard and slider.
 let pinchDistance = null;

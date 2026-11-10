@@ -49,3 +49,13 @@ Automatic ingestion is not enabled. Next: a scheduled Python collector for selec
 Every DISCOVERIES entry has verification: verified, provisional, or claimed, and an optional short verifiedNote string. Upgrade claimed→provisional→verified only when a cited independent check exists; put the citation in verifiedNote. Initial states are editorial classifications; empty notes do not supply independent verification. Reading badges and graph/network dots share these states; the verification filter combines with field, search, year, and Last 30 days filters.
 
 ERAS is a separate, sorted list of hand-picked context markers with id, year, title, line, and Wikipedia url. It never enters milestone search, hero statistics, cumulative totals, or recent filters. Deep time plots log10(years before CUTOFF + 1), reversed with today at right. Time dive uses the slider, wheel/pinch, or +/− keys while the graph is focused; reduced motion jumps immediately. The historical gap panel uses consecutive ERAS years and the median of consecutive milestone date gaps in the same last-90-day window as the hero (including same-day zero gaps). These differently selected lists cannot establish acceleration.
+
+### Research desks
+
+Every milestone has an **Explore sources & tools** button. Its research desk combines the original source with curated papers, code, datasets, demonstrations, videos and background reading from `dist/resources.js`. Documented upstream/downstream links open the related story’s desk without losing the explorer selection.
+
+The November 10 resource pass adds 107 supplemental link placements across 68 stories. BioBasicsBench has its illustrated primary article and a note that no separate public artifact was found. The Yang–Mills desk labels the Clay problem statement as background; it does not imply the announced proof is available. Some publisher destinations restrict access, and external demos may require sign-in or be temporarily unavailable. Links were located through primary pages and research repositories; this is not an independent reproduction of the science.
+
+Nine stories now have click-loaded YouTube players; the three featured films remain in the screening room. A FutureHouse Vimeo demonstration is linked from Robin’s desk. Additional video labels describe their role; upload dates are omitted where unconfirmed. Code links are not a blanket claim that all models or artifacts have unrestricted open-source licenses.
+
+Run `node tools/check-resources.cjs` to check coverage, valid resource types, URLs and story/video mappings.

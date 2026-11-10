@@ -8,6 +8,7 @@ const DISCOVERY_MEDIA = {
 const DISCOVERY_MEDIA_LINKS = {
   'fable-mythos-52-science': {title:'See the electronic prototypes', publisher:'Anthropic · official demonstration and write-up', url:'https://www.anthropic.com/research/claude-electronics-design', note:'Human engineers assembled and tested the devices. These remain prototypes.'}
 };
+Object.assign(DISCOVERY_MEDIA, RESOURCE_VIDEOS);
 const mediaURL = m => `https://www.youtube.com/watch?v=${m.videoId}`;
 function videoPoster(id, cinema = false) {
   const m=DISCOVERY_MEDIA[id];if(!m)return '';
@@ -15,7 +16,7 @@ function videoPoster(id, cinema = false) {
 }
 function mediaPanel(d) {
   const m=DISCOVERY_MEDIA[d.id],link=DISCOVERY_MEDIA_LINKS[d.id];
-  if(m)return `<section class="entry-media" aria-label="Video context"><p class="media-kicker">WATCH THE DISCOVERY</p><div class="video-slot">${videoPoster(d.id)}</div><p class="media-caption">${esc(m.caption)}</p><p class="media-attribution">${esc(m.publisher)} · ${m.date}<br>${esc(m.note)}</p><a class="media-fallback" href="${mediaURL(m)}" target="_blank" rel="noopener noreferrer">Watch on YouTube ↗</a><small class="media-privacy">Player loads only when you press Play. Captions available through YouTube where provided.</small></section>`;
+  if(m)return `<section class="entry-media" aria-label="Video context"><p class="media-kicker">WATCH THE DISCOVERY</p><div class="video-slot">${videoPoster(d.id)}</div><p class="media-caption">${esc(m.caption)}</p><p class="media-attribution">${esc(m.publisher)}${m.date ? ` · ${m.date}` : ""}<br>${esc(m.note)}</p><a class="media-fallback" href="${mediaURL(m)}" target="_blank" rel="noopener noreferrer">Watch on YouTube ↗</a><small class="media-privacy">Player loads only when you press Play. Captions available through YouTube where provided.</small></section>`;
   if(link)return `<section class="entry-media"><p class="media-kicker">SEE IT IN ACTION</p><a class="media-demo" href="${link.url}" target="_blank" rel="noopener noreferrer">${esc(link.title)} <span>↗</span></a><p class="media-attribution">${esc(link.publisher)}<br>${esc(link.note)}</p></section>`;
   return '';
 }
@@ -41,14 +42,14 @@ function bindMedia(root=document) {
     const id=button.dataset.video,m=DISCOVERY_MEDIA[id];
     if(button.dataset.cinema){
       $('cinema-title').textContent=m.title;
-      $('cinema-caption').textContent=`${m.publisher} · ${m.date} · ${m.note}`;
+      $('cinema-caption').textContent=`${m.publisher}${m.date ? ` · ${m.date}` : ""} · ${m.note}`;
       $('cinema-link').href=mediaURL(m);
       $('cinema').showModal();mountVideo($('cinema-screen'),id);
     }else mountVideo(button.parentElement,id);
   });
 }
 function initMedia() {
-  $('screening-cards').innerHTML=Object.keys(DISCOVERY_MEDIA).map((id,i)=>`<article class="screening-card ${i===0?'screening-feature':''}">${videoPoster(id,true)}<div class="screening-copy"><span>${String(i+1).padStart(2,'0')} / ${esc(byId.get(id).field)}</span><p>${esc(DISCOVERY_MEDIA[id].caption)}</p><button data-media-discovery="${id}">Explore this milestone →</button></div></article>`).join('');
+  $('screening-cards').innerHTML=Object.keys(DISCOVERY_MEDIA).slice(0,3).map((id,i)=>`<article class="screening-card ${i===0?'screening-feature':''}">${videoPoster(id,true)}<div class="screening-copy"><span>${String(i+1).padStart(2,'0')} / ${esc(byId.get(id).field)}</span><p>${esc(DISCOVERY_MEDIA[id].caption)}</p><button data-media-discovery="${id}">Explore this milestone →</button></div></article>`).join('');
   document.querySelectorAll('[data-media-discovery]').forEach(button=>button.onclick=()=>{
     stop();field='All fields';verification='all';query='';year=lastYear;recentOnly=false;mediaOnly=false;tourIndex=-1;
     $('search').value='';$('year').value=year;$('recent').setAttribute('aria-pressed','false');
