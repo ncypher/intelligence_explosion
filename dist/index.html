@@ -39,14 +39,19 @@
     <button id="tour">Take a guided journey <span>↗</span></button>
   </div>
 </section>
-<section class="workspace" aria-label="Discovery explorer">
+<section class="screening-room" aria-labelledby="screening-title">
+  <div class="screening-heading"><div><p class="eyebrow">THE SCREENING ROOM</p><h2 id="screening-title">Science you can see.</h2></div><p>Meet the researchers. Watch the ideas take shape.<br><a href="#explorer">Or go straight to the discoveries ↓</a></p></div>
+  <div id="screening-cards"></div>
+  <p class="screening-note">Films &amp; conversations accompany the research. Each milestone keeps its own sources and limits. YouTube players load on click.</p>
+</section>
+<section id="explorer" class="workspace" aria-label="Discovery explorer">
   <div class="toolbar">
     <div class="tabs"><button class="active" id="graph-tab" aria-pressed="true">↗ &nbsp; Growth graph</button><button id="tree-tab" aria-pressed="false">✧ &nbsp; Discovery network</button><button id="list-tab" aria-pressed="false">☷ &nbsp; Reading view</button></div>
     <label class="search"><span>⌕</span><input id="search" type="search" placeholder="Find a discovery…" aria-label="Search discoveries"></label>
   </div>
   <div class="filters" id="filters"></div>
   <div class="verification-controls"><p class="verification-legend">● Verified &nbsp; ◉ Provisional &nbsp; ○ Claimed</p><div class="filters" role="group" aria-label="Verification state"><button data-verification="all" aria-pressed="true">All</button><button data-verification="verified" aria-pressed="false">Verified</button><button data-verification="provisional" aria-pressed="false">Provisional</button><button data-verification="claimed" aria-pressed="false">Claimed</button></div></div>
-  <div class="rangebar"><button id="recent" aria-pressed="false">Last 30 days</button><span id="coverage"></span></div>
+  <div class="rangebar"><button id="recent" aria-pressed="false">Last 30 days</button><span id="coverage"></span><button id="media-filter" aria-pressed="false">▶ With video</button></div>
   <div class="explorer">
     <div class="visual">
   <div class="timeline">
@@ -140,6 +145,7 @@
 </main>
 <footer><span>INTELLIGENCE EXPLOSION <i>·</i> An unfinished story.</span><nav aria-label="Tom Harwood links"><a href="https://github.com/ncypher" target="_blank" rel="noopener noreferrer">GitHub &#8599;</a><a href="https://thomas-harwood.com/" target="_blank" rel="noopener noreferrer">thomas-harwood.com &#8599;</a><a href="https://github.com/ncypher/intelligence_explosion" target="_blank" rel="noopener">Explore the project ↗</a></nav></footer>
 <dialog id="info"><button id="close" aria-label="Close about dialog">×</button><p class="eyebrow">ABOUT THIS COLLECTION</p><h2>Wonder, with receipts.</h2><p>Intelligence Explosion follows selected milestones in AI-assisted science. Dates mark the linked publication or announcement, not necessarily the first experiment.</p><p>Network clusters are subject categories, not claims of causation. “Builds on” links appear only where a source documents the dependency. Points and network nodes have equal weight. Their size does not score importance. Every entry comes with its source description and limits.</p><p>The collection covers <span id="about-span">2020–2026</span> and is not comprehensive. New findings require editorial review before publication. Last editorial review: <span id="review-date"></span>.</p><p>Built for Tom Harwood’s Intelligence Explosion project.</p></dialog>
-<script src="data.js"></script><script src="graph.js"></script><script src="app.js"></script>
+<dialog id="cinema" aria-labelledby="cinema-title"><div class="cinema-top"><span class="media-kicker">INTELLIGENCE EXPLOSION / SCREENING ROOM</span><button id="cinema-close" aria-label="Close video">Close ×</button></div><h2 id="cinema-title"></h2><div id="cinema-screen"></div><p id="cinema-caption"></p><a id="cinema-link" target="_blank" rel="noopener noreferrer">Player unavailable? Watch on YouTube ↗</a></dialog>
+<script src="media.js"></script><script src="data.js"></script><script src="graph.js"></script><script src="app.js"></script>
 </body>
 </html>

@@ -24,6 +24,10 @@ No build or dependencies required. Serve `dist/` with any static server, for exa
 
 A collapsible “How to read this” note under the explorer explains what the curve can and cannot show. Dates reflect the linked publication or announcement. Network clusters classify topics; proximity does not assert a relationship. Only documented buildsOn links create edges. Collection growth is not a scientific acceleration metric. This is a starter collection, not comprehensive current news coverage.
 
+## Multimedia
+
+`dist/media.js` curates contextual YouTube films/interviews for existing milestones. Videos do not add milestone counts. The screening room opens a keyboard-accessible dialog; detail panels play inline. Players use youtube-nocookie.com and load only after a click; thumbnails load from YouTube. Closing a dialog or starting another video removes the previous player. Every video retains an external watch link. A With video filter, reading badges and network markers expose available media. Official media pages without a verified video ID remain external links.
+
 ## Add discoveries
 
 To add a milestone: append to DISCOVERIES, bump CUTOFF.
