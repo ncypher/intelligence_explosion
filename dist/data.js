@@ -1,6 +1,54 @@
 // Editorial cutoff: the last date the collection was reviewed. Windows and axes are computed from it.
-const CUTOFF = '2026-11-05';
+const CUTOFF = '2026-11-10';
 const DISCOVERIES = [
+{
+  "id": "fable-mythos-52-science",
+  "title": "Fable 5.2: formal proofs, physics and working hardware",
+  "date": "2026-11-09",
+  "field": "Mathematics",
+  "summary": "Anthropic released Claude Fable 5.2 and Mythos 5.2, reporting a Fermat's Last Theorem formalization by 1,000 Fable agents in 30 hours, two black-hole physics results and three working electronic prototypes. This release is counted once as a batch.",
+  "aiRole": "Agents constructed formal proofs and research calculations; Fable also produced circuit-board designs, enclosures and firmware for human-built prototypes.",
+  "impact": "Shows reported progress across mathematical verification and engineering workflows, with concrete artifacts to examine.",
+  "limit": "Formalizing Fermat is not discovering a new theorem. Timing is from a single company-reported run; physics results are preprints. Hardware prototypes lack full validation and certification. Independent reproduction was not established in this review.",
+  "status": "Model release; reported formalization, preprints and prototypes",
+  "source": "Anthropic · Fable 5.2 and Mythos 5.2 launch",
+  "url": "https://www.anthropic.com/claude-fable-and-mythos-5-2",
+  "verification": "claimed",
+  "verifiedNote": "Primary source checked November 10, 2026; independent reproduction not established in this review.",
+  "buildsOn": []
+},
+{
+  "id": "aaronson-ambainis-psi",
+  "title": "An announced proof about quantum speedups",
+  "date": "2026-11-06",
+  "field": "Mathematics",
+  "summary": "PSI announced a proof of the Aaronson–Ambainis conjecture, reporting that its research system obtained a complete proof during its third day and that Lean accepted the formalization. PSI published a manuscript and proof code.",
+  "aiRole": "A PSI-built research system used instances of a non-public Anthropic model, with human problem selection, review and auditing.",
+  "impact": "The result concerns limits on quantum query advantages for random inputs, a long-standing question in quantum complexity.",
+  "limit": "This is an announced proof; this review did not independently compile the Lean artifacts or establish peer review. Query complexity is not a universal limit on quantum computing. The unnamed model should not be assumed to be Fable 5.2.",
+  "status": "Research announcement; Lean acceptance reported by authors",
+  "source": "Physical Superintelligence · research announcement and proof links",
+  "url": "https://psi.inc/research/aaronson-ambainis/",
+  "verification": "provisional",
+  "verifiedNote": "Primary source checked November 10, 2026; independent reproduction not established in this review.",
+  "buildsOn": []
+},
+{
+  "id": "biobasicsbench",
+  "title": "Testing whether AI can read everyday lab evidence",
+  "date": "2026-11-06",
+  "field": "Biology",
+  "summary": "OpenAI and Ligo introduced BioBasicsBench, 100 tasks using raw wet-lab evidence. At xhigh reasoning effort, OpenAI reports 66.7% mean rubric credit for GPT-6 Astra versus 43.8% for GPT-5.6 Sol.",
+  "aiRole": "Models interpreted images, instrument outputs and experimental records, checked controls and assessed whether conclusions were supported.",
+  "impact": "Makes routine experimental interpretation and troubleshooting measurable targets for improving scientific assistants.",
+  "limit": "These are developer-reported benchmark scores, not percentages of experiments completed or measured discovery acceleration. The report documents persistent failures in interpreting controls, images and counts.",
+  "status": "Benchmark announcement; developer-reported evaluation",
+  "source": "OpenAI · BioBasicsBench with Ligo",
+  "url": "https://openai.com/index/measuring-how-ai-agents-handle-wet-lab-science/",
+  "verification": "provisional",
+  "verifiedNote": "Primary source checked November 10, 2026; independent reproduction not established in this review.",
+  "buildsOn": []
+},
 {
   "id": "distributed-biology-atlas",
   "date": "2026-10-21",
